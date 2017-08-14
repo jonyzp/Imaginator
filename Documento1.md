@@ -12,7 +12,7 @@ _Documento 2_:
 
     b. Selección de la aplicación basada en Proyecto1:
 
-    	* La aplicación que se seleccionó es Imaginator de Mauricio Hoyos, ya que vemos que cumple con todos los requisitos funcionales que se establecieron para Proyecto 1, sólo es necesario implementar la funcionalidad de carga de imágenes y enfocarnos en realizar la configuración del Load Balancer para poder empezar con las especificaciones concernientes al Proyecto 2. En adición, el grupo tiene dominio del Framework NodeJS, lo cual nos permitirá enfocarnos plenamente en los QA.
+    * La aplicación que se seleccionó es Imaginator de Mauricio Hoyos, ya que vemos que cumple con todos los requisitos funcionales que se establecieron para Proyecto 1, sólo es necesario implementar la funcionalidad de carga de imágenes y enfocarnos en realizar la configuración del Load Balancer para poder empezar con las especificaciones concernientes al Proyecto 2. En adición, el grupo tiene dominio del Framework NodeJS, lo cual nos permitirá enfocarnos plenamente en los QA.
 
     c. Descripción de la aplicación:
 
@@ -24,35 +24,40 @@ _Documento 2_:
     
 	* RF1: El sistema permitirá a los usuarios ingresar mediante un usuario y contraseña.
 
-	* RF2: El sistema permitirá a los usuarios agregar nuevas imágenes, así como también eliminarlas.
+	* RF2: El sistema permitirá a los usuarios agregar nuevas imágenes, así como también visualizarlas, modificarlas o eliminarlas.
 
 	* RF3: El sistema permitirá a los usuarios buscar la imagen que ellos deseen.
 
-	* RF4: El sistema permitirá a los usuarios ver las imágenes que hayan compartido los demás a la aplicación.
+	* RF4: El sistema permitirá a los usuarios compartir las imágenes que hayan subido.
+
+	* RF5: El sistema permitirá a los usuarios ver las imágenes que hayan compartido los demás a la aplicación.
 	
-	* RF5: El sistema permitirá a los usuarios cerrar su sesión.
+	* RF6: El sistema permitirá a los usuarios cerrar su sesión.
+
+	* RF7: La persona podrá crear, modificar (password required), eliminar (password required), visualizar su perfil
 
 2. Detalles técnicos del proceso para la incorporación de la Gestión de Contenidos en el proyecto 2:
 
 	* DCA - CentOS 7.1
-	    VMware
-	    VMware Virtual Machine
-	    Intel(R) Xeon(R) CPU     X5660  @ 2.80GHz (fam: 06, model: 25, stepping: 01)
-	    CPU MHz: 2799.269
-	    Cache size: 12288 KB
-	    CPU cores: 1
-	    MemTotal: 1884112 kB
-	    MemFree: 100676 kB
-	    MemAvailable: 424848 kB
+	    * VMware
+	    * VMware Virtual Machine
+	    * Intel(R) Xeon(R) CPU     X5660  @ 2.80GHz (fam: 06, model: 25, stepping: 01)
+	    * CPU MHz: 2799.269
+	    * Cache size: 12288 KB
+	    * CPU cores: 1
+	    * MemTotal: 1884112 kB
+	    * MemFree: 100676 kB
+	    * MemAvailable: 424848 kB
 		* 2 GB RAM
 	    * 20 GB de disco duro
 	    * 2 CPUs virtuales
 
 3. Aplicación en el DCA:
 	
-	http://10.131.137.240:8084/Imaginator/
-	Ejemplo de visualización de contenido: http://10.131.137.240:8084/Imaginator/Image/see?image_id=5990ee032f3d6a61701ce156
+	- http://10.131.137.240:8084/Imaginator/
+	- Ejemplo de visualización de contenido: http://10.131.137.240:8084/Imaginator/Image/see?image_id=5990ee032f3d6a61701ce156
 
 4. Directorio Github para proyecto 2:
 
+	- https://github.com/jonyzp/Imaginator
 
