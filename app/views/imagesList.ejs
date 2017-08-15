@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>imaginator</title>
+    <link rel="stylesheet" href="/css/home.css">
+  <script>
+    function poner(images) {
+
+      for(i=0;i<images.length;i++){
+        var div = document.createElement("div");
+        div.id = "child";
+        var divedit = document.createElement("div");
+        divedit.id = "edit";
+        divedit.setAttribute( "class","media-left");
+        var divdelete = document.createElement("div");
+        divdelete.id = "delete";
+        divdelete.setAttribute( "class","media-body media-middle");
+        var title = document.createElement("h2");
+        var data = document.createElement("h4");
+        var edit = document.createElement("button");
+        var del = document.createElement("button");
+        edit.id = images[i]._id;
+        edit.textContent = "Edit";
+        edit.addEventListener("click", function ir() {
+          window.location.href = '<%=baseurl%>Image/?image_id='+this.id;
+        }, false);
+        divedit.appendChild(edit);
+        del.id = images[i]._id;
+        del.textContent = "Delete";
+        del.addEventListener("click", function ir() {
+          $.ajax({
+            url: 'Image/?image_id='+this.id,
+            type: 'DELETE',
+            dataType: 'json',
+            data: {},
+            success: function (data, textStatus, xhr) {
+              if (data=="0"){
+                alert("the image wasn't deleted");
+              }else {
+                alert("the image was deleted");
+                window.location.href = "<%=baseurl%>my_images"
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log('Error in Operation');
+            }
+          });
+        }, false);
+        divdelete.appendChild(del);
+        title.textContent = images[i].title;
+        data.textContent = "format: "+images[i].format+" date: "+images[i].capture_date+" visibility: "+images[i].visibility;
+        div.appendChild(title);
+        div.appendChild(data);
+        div.appendChild(divedit);
+        div.appendChild(divdelete);
+
+        document.getElementById("images").appendChild(div);
+      }
+    }
+  </script>
+  <script>
+    $(document).ready(function(){
+      $.post("Image/user_images?user_id=<%=id%>",function (images) {
+          poner(images);
+     });
+
+      $("#logout").click(function(){
+        $.post("User/logout").then(window.location.href = "<%=baseurl%>");
+      });
+      $("#load_image").click(function () {
+        window.location.href = "<%=baseurl%>createform";
+      });
+      $("#update_image").click(function () {
+        window.location.href = "<%=baseurl%>my_images";
+      });
+      $("#profile").click(function () {
+        window.location.href = "<%=baseurl%>profile";
+      });
+      $("#shared_with").click(function () {
+        window.location.href = "<%=baseurl%>shared_with_me";
+      });
+    });
+  </script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%=baseurl%>home">Imaginator</a>
+    </div>
+    <div class="right">
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Images<span class="caret"></span></a>
+            <ul class="dropdown-menu" style="background-color: #757575">
+              <li>
+                <input type="button"  class="btn btn-link" id="update_image" value="Update Images">
+              </li>
+              <li>
+                <input type="button"  class="btn btn-link" id="load_image" value="Load Image">
+              </li>
+              <li>
+                <input type="button"  class="btn btn-link" id="shared_with" value="shared with me">
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a role="button" id="profile">
+              Profile
+            </a>
+          </li>
+          <li>
+            <button type="button" id="logout" class="btn btn-primary">Log Out</button>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row" id="images">
+
+  </div>
+</div>
+</body>
+</html>

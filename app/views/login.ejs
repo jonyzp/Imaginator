@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Imaginator</title>
+  <link rel="stylesheet" href="/css/style.css">
+    <script>
+        $(document).ready(function(){
+            var email,user,pass,passconf;
+            $("#sign_up").click(function(){
+                email=$("#email_signup").val();
+                user=$("#user_signup").val();
+                pass=$("#password_signup").val();
+                passconf=$("#password_confirm").val();
+                if(pass===passconf){
+                    $.post("User/",{email:email, user: user,password: pass}, function(data){
+                    if(data!="0") {
+                        email = null;
+                        user = null;
+                        pass = null;
+                        passconf = null;
+                        alert("user created");
+                        document.location.href = "<%=baseurl%>";
+                    }
+                    else {
+                      alert("email or user name already exist");
+                    }
+                });}
+                else {
+                  alert("Both passwords aren't equal");
+                }
+
+            });
+            $("#login").click(function(){
+                email = $("#email").val();
+                pass = $("#password").val();
+                $.post("User/login",{email:email,password:pass},function (data) {
+                    if (data=="0"){
+                        alert("Incorect email address or password ");
+                    }else {
+                        window.location.href = "<%=baseurl%>home";
+                    }
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="<%=baseurl%>home">Imaginator</a>
+
+        </div>
+      <div class="right">
+          <div class="collapse navbar-collapse" id="myNavbar">
+
+            <ul class="nav navbar-nav">
+                <li>
+                    <input id="email" type="email" class="form-control" name="user" value="" placeholder="Email Adress">
+                </li>
+                <li>
+                    <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                </li>
+
+                <li>
+                  <button type="button" id="login" class="btn btn-primary">Login</button>
+                </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+</nav>
+
+
+
+<div>
+    <div class="container" >
+        <div class="col-md-6" >
+            <div id="logbox"  >
+                <form id="signup" method="post" action="/signup" >
+                    <h1>Create an Account</h1>
+                    <input name="user[email]" type="email" id="email_signup" placeholder="Email address" class="input pass"/>
+                    <input name="user[username]" type="text" id="user_signup" placeholder="User name" class="input pass"/>
+                    <input name="user[password]" type="password" id="password_signup" placeholder="Choose a password" required="required" class="input pass"/>
+                    <input name="user[password2]" type="password" id="password_confirm" placeholder="Confirm password" required="required" class="input pass"/>
+
+                    <input type="button" id="sign_up" value="Sign me up!" class="inputButton"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

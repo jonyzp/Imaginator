@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Imaginator</title>
+  <link rel="stylesheet" href="/css/createform.css">
+  <script>
+    $(document).ready(function(){
+      $("#logout").click(function(){
+        $.post("User/logout").then(window.location.href = "<%=baseurl%>");
+      });
+      $("#update").click(function () {
+        var user = $("#user_name").val(), current_pass = $("#current_password").val(), pass = $("#password").val(), pasconf = $("#password_confirm").val();
+        $.ajax({
+          url: 'User/?user_id='+"<%=id%>",
+          type: 'PUT',
+          dataType: 'json',
+          data: {user_name:user,current:current_pass,password:pass, password_confirm:pasconf},
+          success: function (data, textStatus, xhr) {
+            if (data=="0"){
+              alert("some data is empty or the user name already exist");
+            }else {
+                if (data=="1"){
+                  alert("the user was updated");
+                  window.location.href = "<%=baseurl%>home"
+                }
+                else {
+                    if(data=="2"){
+                        alert("current password is wrong");
+                    }
+                    else {
+                      alert("password and password confirm aren't equal");
+                    }
+                }
+            }
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log('Error in Operation');
+          }
+        });
+      });
+      $("#update_image").click(function () {
+        window.location.href = "<%=baseurl%>my_images";
+      });
+      $("#load_image").click(function () {
+        window.location.href = "<%=baseurl%>createform";
+      });
+      $("#profile").click(function () {
+        window.location.href = "<%=baseurl%>profile";
+      });
+    });
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%=baseurl%>home">Imaginator</a>
+    </div>
+    <div class="right">
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Images<span class="caret"></span></a>
+            <ul class="dropdown-menu" style="background-color: #757575">
+              <li>
+                <input type="button"  class="btn btn-link" id="update_image" value="Update Images">
+              </li>
+              <li>
+                <input type="button"  class="btn btn-link" id="load_image" value="Load Image">
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a role="button" id="profile">
+              Profile
+            </a>
+          </li>
+          <li>
+            <button type="button" id="logout" class="btn btn-primary">Log Out</button>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container bootstrap snippet">
+
+  <div class="jumbotron text-center" style="min-height:400px;height:auto;">
+    <div class="col-md-20 col-md-offset-2">
+      <form class="form-horizontal" role="form">
+        <div class="form-group text-center">
+          <div class="col-sm-10 reg-icon">
+            <span class="title">Update User Data</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="user_name"  value="<%=username%>" placeholder="Username">
+          </div>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="current_password" placeholder="Current Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password_confirm" placeholder="Password Confirm">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="btn-group">
+            <button type="button" id="update" class="btn btn-info">
+              <span class="glyphicon glyphicon-share-alt"></span>
+              Update
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
