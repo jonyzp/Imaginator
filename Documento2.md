@@ -1,4 +1,4 @@
-Atributos de calidad seleccionados:
+## Atributos de calidad seleccionados:
 
 * QA1: _Disponibilidad de servicio_ Estudiante: _Jonathan Zapata Castaño_
 
@@ -8,7 +8,7 @@ Atributos de calidad seleccionados:
 
 ## QA1:
     
-#### Marco de referencia:
+### Marco de referencia:
 
 *a. ¿Qué es?*
 
@@ -30,6 +30,10 @@ Atributos de calidad seleccionados:
 
 *d. ¿Qué tácticas se pueden emplear?*
 
-*e. Qué herramientas se pueden utilizar para lograrlo*
+*e. Atributos de calidad seleccionados para escalabilidad*
+
+Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para esta capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
+
+*f. Qué herramientas se pueden utilizar para lograrlo*
 
 * QA2:

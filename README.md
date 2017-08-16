@@ -1,9 +1,14 @@
 # NodeJS Imaginator
 
-By: Mauricio Hoyos Ardila - mhoyosa2@eafit.edu.co
-    Mayerli López - @eafit.edu.co
-    Jonathan Zapata - jzapat80@eafit.edu.co
-    Pablo Quijano - @eafit.edu.co
+By: 
+
+* Mauricio Hoyos Ardila - mhoyosa2@eafit.edu.co - Creador del Api RESTful
+    
+* Mayerli López - @eafit.edu.co
+    
+* Jonathan Zapata - jzapat80@eafit.edu.co
+    
+* Pablo Quijano - @eafit.edu.co
 
 # Descripción de aplicación
 
