@@ -26,14 +26,24 @@
 
 *c. Especificación mediante escenarios*
 
-
+| Simulated scenario | Testing parameter
+| :---:    | :----: |
+| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
+| Bring down one of the database nodes | ● Check data replication ● Check database failover
+| Bring down one of the storage servers | ● Check file retrieval and updates
+| Bring down the network interface  | ● Check overall application availability
+| Bring down the primary node of the web server cluster ● Check the availability of global gateway page ● Check the availability of static assets
 
 *d. ¿Qué tácticas se pueden emplear?*
+
+Para la prevención de la caída del sistema se pueden emplear tácticas de recuperación del servidor 
 
 *e. Atributos de calidad seleccionados para escalabilidad*
 
 Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para esta capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
 
 *f. Qué herramientas se pueden utilizar para lograrlo*
+
+pm2 para monitoreo
 
 * QA2:
