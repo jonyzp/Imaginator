@@ -2,7 +2,7 @@
 
 * QA1: _Disponibilidad de servicio_ Estudiante: _Jonathan Zapata Castaño_
 
-* QA2: _Seguridad de la Aplicaci�n_ Estudiante: __________________________
+* QA2: _Seguridad de la Aplicación_ Estudiante: _Mauricio Hoyos Ardila_
 
 * QA3: ____________________________ Estudiante: __________________________
 
@@ -76,17 +76,24 @@ haproxy para el balanceo de cargas
 
 ![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
 
-* QA2:
 
-a. �Qu� es?
+## QA2:
 
-- El atributo de seguridad se refiere a como la aplicaci�n es protegida de perder o suministrar informaci�n a equipos, personas o servicios no autorizados por la aplicaci�n, a trav�s de este atributo de calidad se busca que la aplicaci�n tenga una alta probabilidad de que sus activos (datos e informaci�n) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
-    -	Confidencialidad: el acceso a los activos del sistema est� limitado a usuarios autorizados.
-    -	Integridad: los activos del sistema s�lo pueden ser borrados o modificados por usuarios autorizados.
-    -	Disponibilidad: el acceso a los activos en un tiempo razonable est� garantizado para usuarios autorizados.
+*a. ¿Qué es?*
 
-d. �Qu� t�cticas se pueden emplear?
+- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a trav�és de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
+    -	Confidencialidad: el acceso a los activos del sistema esté limitado a usuarios autorizados.
+    -	Integridad: los activos del sistema sólo pueden ser borrados o modificados por usuarios autorizados.
+    -	Disponibilidad: el acceso a los activos en un tiempo razonable esté garantizado para usuarios autorizados.
 
--	Autenticaci�n: los clientes de nuestras aplicaciones o servicios deben ser identificados de forma �nica, sean usuarios finales,         otros servicios o computadoras externas.
--	Autorizaci�n: no solo es necesario saber qui�nes acceden a nuestros activos, tambi�n es necesario establecer que es lo que pueden       hacer con ellos. Un nivel de autorizaci�n dado determina que tipo de operaciones o transacciones puede efectuar un cliente dado         sobre un recurso dado.
--	Registro y Auditoria: luego de efectuada una operaci�n, es importante que esta sea registrada adecuadamente, en particular es           esencial si queremos evitar el repudio de transacciones efectuada por un cliente.
+d. ¿Qué tacticas se pueden emplear?
+
+-	Autenticación: los clientes de nuestras aplicaciones o servicios deben ser identificados de forma �nica, sean usuarios finales,         otros servicios o computadoras externas.
+-	Autorización: no solo es necesario saber qui�nes acceden a nuestros activos, también es necesario establecer que es lo que pueden       hacer con ellos. Un nivel de autorización dado determina que tipo de operaciones o transacciones puede efectuar un cliente dado         sobre un recurso dado.
+-	Registro y Auditoria: luego de efectuada una operación, es importante que esta sea registrada adecuadamente, en particular es           esencial si queremos evitar el repudio de transacciones efectuada por un cliente.
+
+
+*e. Atributos de calidad seleccionados para escalabilidad*
+
+Para esta capa de servicio se tienen en cuenta los atributos de Consistencia y Disponibilidad, ya que de esto depende todo lo que tiene que ver con el manejo y consistencia de los datos, al protegerlos de la manipulación de personas no autenticadas, no registradas o con permisos restringidos sobre los datos.
+Para el escenario que vamos a manejar es importante que el servicio de seguridad se encuentre siempre activo para disminuir el riesgo de que un ataque a la plataforma sea exitoso, a su vez la capa de seguridad tiene que estar presente a lo largo de todo el comportamiento de la aplicación para poder garantizar la consistencia de los datos que se manejan internamente en la plataforma.
