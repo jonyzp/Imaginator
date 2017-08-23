@@ -16,7 +16,7 @@
 
 *b. ¿Qué patrones se pueden emplear?*
 
-- Teniendo en cuenta los **patrones** definidos para escalabilidad en toda la arquitectura, escogimos la siguiente lista según el impacto que tienen sobre la **capa de servicio**.
+- Teniendo en cuenta los **patrones** definidos para escalabilidad en toda la arquitectura, se escogió la siguiente lista según el impacto que tienen sobre la **capa de servicio**.
 + Distribuited computing pattern :: Debido a que distribuye la carga sobre las diferentes instancias del servidor, nos permite contar con la capacidad de tolerar una falla de uno de los servidores, lo que se traduce en disponibilidad.
 + SOA    ::   Este patrón, además de ser ampliamente utilizado, nos beneficia en gran manera al permitir ser accedidos desde gran número de dispositivos, en cualquier momento y en cualquier lugar, con la gran ventaja de permitir una interacción dinámica en donde no se tiene amarrado al usuario, sino que se le responde cada vez que haga la petición, pero no necesita estar conectado durante todo el tiempo con la aplicación, ni demandando gran cantidad de datos como templates html cada que se haga una petición.
 + Parallel computing pattern :: Este patrón puede ser tomado en cuenta por su principal función, pues nos permite procesar las instrucciones de manera paralela y en consecuencia nos lleva a terminar las operaciones en la mitad del tiempo; lo que resulta en la capacidad para cada servidor de atender  mayor número de usuarios, motivo por el cual beneficia la disponibilidad del servicio, aunque cabe aclarar que este patrón es más enfocado en beneficiar la parte del rendimiento.
@@ -27,22 +27,12 @@
 
 | Patrón | Resumen |
 |:--:|:--:|
-| Health Endpoint Monitoring | |
-| Queue-Based Load Leveling | |
-| Throttling | | 
+| Health Endpoint Monitoring | Implement functional checks in an application that external tools can access through exposed endpoints at regular intervals |
+| Queue-Based Load Leveling | Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads. |
+| Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
 
 *c. Especificación mediante escenarios*
 
-Estímulo
-* Falla de Servidor
-
-| Simulated scenario | Testing parameter
-| :---:    | :----: |
-| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
-| Bring down one of the database nodes | ● Check data replication ● Check database failover
-| Bring down one of the storage servers | ● Check file retrieval and updates
-| Bring down the network interface  | ● Check overall application availability
-| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
 
 | - | Descripción |
 | :--: | :---: |
@@ -54,13 +44,17 @@ Estímulo
 | • Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
 | • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 
+> Con este escenario basta o hay que agregar más?
+
+| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
+| Bring down the network interface  | ● Check overall application availability
+| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
+
 *d. ¿Qué tácticas se pueden emplear?*
 
-Para la detección de la caída del sistema se pueden emplear tácticas de recuperación del servidor, mediante un monitoreo constante por medio del _heartbeat_, nos podremos dar cuenta de algún fallo y reaccionar de inmediato ante este escenario.
-Manejador de cache distribuído
-Tolerancia (ante una falla, continuidad)
-Regreso (Failback)
-
+Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
+Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
+Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
 
 *e. Qué herramientas se pueden utilizar para lograrlo*
 
@@ -89,7 +83,7 @@ e. Herramientas.
 
 *a. ¿Qué es?*
 
-- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a trav�és de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
+- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a trav�és de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
     -	Confidencialidad: el acceso a los activos del sistema esté limitado a usuarios autorizados.
     -	Integridad: los activos del sistema sólo pueden ser borrados o modificados por usuarios autorizados.
     -	Disponibilidad: el acceso a los activos en un tiempo razonable esté garantizado para usuarios autorizados.
