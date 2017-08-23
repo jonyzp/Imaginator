@@ -83,10 +83,34 @@ e. Herramientas.
 
 *a. ¿Qué es?*
 
-- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a trav�és de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
+- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a través de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
     -	Confidencialidad: el acceso a los activos del sistema esté limitado a usuarios autorizados.
     -	Integridad: los activos del sistema sólo pueden ser borrados o modificados por usuarios autorizados.
     -	Disponibilidad: el acceso a los activos en un tiempo razonable esté garantizado para usuarios autorizados.
+
+*b. ¿Qué patrones se pueden emplear?*
+
++Patrón de Identidad federada:
+	Con este patrón se busca solucionar la gesti�n de identidad y autenticación de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticación de cada usuario no se realice internamente dentro de la aplicación, evitando así exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma información. Todo esto se puede lograr delegando el servicio de autenticación a un proveedor de identidad de confianza externo, separando todo el proceso de autenticación del código de la aplicación, adem�s este servicio externo permite separar fácilmente la autenticación de la autorización; este patrón de seguridad es una buena implementación de Single Sing-On (�nica autenticación).
+	Al incurrir en este patrón se debe de dise�ar la arquitectura para que toda la información se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
+
++Patrón Gatekeeper:
+	Este patrón act�a como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar da�os o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
+	Dicho patrón se puede dise�ar para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a�n m�s el riesgo de que la seguridad sea vulnerada.
+
+*c. Especificación mediante escenarios*
+
+
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
+| • Fuente de Estimulo | Persona o sistema malicioso no autenticado desde acceso remoto |
+| • Estimulo | Petición para modificar información de la base de datos |
+| • Artefacto | Datos en la aplicación |
+| • Ambiente | En normal |
+| • Respuesta | El sistema rechaza la petición y no modifica los datos |
+| • Medida de respuesta | devuelve la información de que datos trataron de modificar y la hora|
+
 
 d. ¿Qué tacticas se pueden emplear?
 
