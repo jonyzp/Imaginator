@@ -103,7 +103,7 @@ e. Herramientas.
 
 | - | Descripción |
 | :--: | :---: |
-| **Escenario 1** |  |
+| **Escenario** |  |
 | • Fuente de Estimulo | Persona o sistema malicioso no autenticado desde acceso remoto |
 | • Estimulo | Petición para modificar información de la base de datos |
 | • Artefacto | Datos en la aplicación |
@@ -119,7 +119,47 @@ d. ¿Qué tacticas se pueden emplear?
 -	Registro y Auditoria: luego de efectuada una operación, es importante que esta sea registrada adecuadamente, en particular es           esencial si queremos evitar el repudio de transacciones efectuada por un cliente.
 
 
-*e. Atributos de calidad seleccionados para escalabilidad*
+*e. Qué herramientas se pueden utilizar para lograrlo*
+
+-	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci�n de los usuarios a trav�s de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi�n iniciada durante todo el recorrido de un usuario por la aplicaci�n.
+-	JSlint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
+-	JSHint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
+
+
+*f. Atributos de calidad seleccionados para escalabilidad*
 
 Para esta capa de servicio se tienen en cuenta los atributos de Consistencia y Disponibilidad, ya que de esto depende todo lo que tiene que ver con el manejo y consistencia de los datos, al protegerlos de la manipulación de personas no autenticadas, no registradas o con permisos restringidos sobre los datos.
 Para el escenario que vamos a manejar es importante que el servicio de seguridad se encuentre siempre activo para disminuir el riesgo de que un ataque a la plataforma sea exitoso, a su vez la capa de seguridad tiene que estar presente a lo largo de todo el comportamiento de la aplicación para poder garantizar la consistencia de los datos que se manejan internamente en la plataforma.
+
+
+*Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico*
+
+
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
+| • Fuente de Estimulo | Persona no autenticada desde acceso remoto |
+| • Estimulo | Petición para ver información privada de un usuario |
+| • Artefacto | Datos en la aplicación |
+| • Ambiente | En normal |
+| • Respuesta | El sistema rechaza la petición |
+| • Medida de respuesta | informa que trataron de acceder a la infomación del usuario |
+
+| :--: | :---: |
+| **Escenario 2** |  |
+| • Fuente de Estimulo | Persona no autenticada desde acceso remoto |
+| • Estimulo | Petición para eliminar imagenes |
+| • Artefacto | Datos en la aplicación |
+| • Ambiente | En normal |
+| • Respuesta | El sistema rechaza la petición |
+| • Medida de respuesta | informa que trataron de eliminar información |
+
+| :--: | :---: |
+| **Escenario 3** |  |
+| • Fuente de Estimulo | Persona no autenticada desde acceso remoto |
+| • Estimulo | Petición para eliminar un usuario |
+| • Artefacto | Datos en la aplicación |
+| • Ambiente | En normal |
+| • Respuesta | El sistema rechaza la petición |
+| • Medida de respuesta | informa que trataron de eliminar un usuario |
+
