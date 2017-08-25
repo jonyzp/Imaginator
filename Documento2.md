@@ -16,7 +16,8 @@
 
 *b. ¿Qué patrones se pueden emplear?*
 
-- Teniendo en cuenta los slides con la información concerniente a HA, tenemos los siguientes patrones:
+- Teniendo en cuenta los slides proveídas por el profesor con la información concerniente a HA, tenemos los siguientes patrones:
+
 + Failover
 + Failback
 + Replication
@@ -38,19 +39,42 @@
 | - | Descripción |
 | :--: | :---: |
 | **Escenario 1** |  |
-| • Fuente de Estimulo | Origen	interno	o externo de fallos |
-| • Estimulo | Server crash |
-| • Artefacto | App |
-| • Ambiente | En normal
-| • Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
-| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+| • Fuente de Estimulo | Origen	interno	o	externo	de	fallos (Gente, HW, SW, Infraestructura física, ambiente físico) |
+| • Estimulo | Falla	concreta,	que	puede	ser: Omisión, Crash, Incorrect Timing, Incorrect Response |
+| • Artefacto | Componente	altamente	disponible:	App,	SO,	BD,	Módulo,	etc. |
+| • Ambiente |	En	normal,	bajo	la	ocurrencia	de	una	fallo,	en	recuperación,	etc
+| • Respuesta | Posibles	reacciones	a	un	fallo	del	sistema.	Primero	el	fallo	debe	ser	 detectado,	luego	recuperarse
+| • Medida de respuesta | tiempo	de	disponibilidad	en	%.	Tiempo	para	detectar	el	 fallo,	para	corregirlo
+
 
 
 *d. ¿Qué tácticas se pueden emplear?*
 
-Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
-Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
-Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
+- Detección de Fallas:
+* Ping / Echo  
+* Monitor
+* Heartbeat
+* Timestamp
+* Sanity Checking
+* Condition Monitoring
+* Voting
+* Exception Detection
+* Self-test
+
+- Recuperación de Fallas
+- Preparación y reparación:
+* Active Redundancy
+* Passive Redundancy
+* Spare
+* Exception Handling
+* Rollback
+* Software Upgrade
+* Retry
+* Ignore Faulty Behavior
+* Degradation
+* Reconfiguration
+
+![HA Tactics](https://image.prntscr.com/image/i_7RPcLMSXurRw6TMK74cw.jpeg)
 
 *e. Qué herramientas se pueden utilizar para lograrlo*
 
@@ -76,10 +100,17 @@ jmeter para métricas
 | • Ambiente | En normal
 | • Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
 | • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
-
+| **Escenario 2** |  |
 | Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
 | Bring down the network interface  | ● Check overall application availability
 | Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
+
+| • Fuente de Estimulo | Origen	interno	o externo de fallos |
+| • Estimulo | Server crash |
+| • Artefacto | App |
+| • Ambiente | En normal
+| • Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
+| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 
 **3.	Diseño:	En	Aplicación	y	en	Sistema.**
 a. Vistas	de	arquitectura.
@@ -99,10 +130,50 @@ b. Patrones	de	arquitectura.
 | Health Endpoint Monitoring | Implement functional checks in an application that external tools can access through exposed endpoints at regular intervals |
 | Queue-Based Load Leveling | Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads. |
 | Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
-    
+
 c. Best	Practices.
-d. Tácticas.
-e. Herramientas.
+
+Hardware-related best practices
+• proactive	monitoring	and	alerting	infrastructure
+• hardware	redundancy
+• disaster recovery
+Software-related best practices
+• architecture simple
+• Design modular	software	components
+• caching strategy
+• automation for maintenance activities
+Network	availability
+• Redundancy links
+• monitoring of	network
+• failover features
+• network-level	fault	detection,	self-recovery,	and	graceful	restart
+5R	model	for	high	availability
+• Reliability
+• Replicability
+• Recoverability
+• Reporting	and	Monitoring
+• Redundancy
+
+ Step-wise functionality degradation pattern
+• Asynchronous services-based integration
+• Stateless	sessions	and	lightweight	component	design
+• Data	replication.
+
+*d. Tácticas.*
+
+Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
+Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
+Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
+
+*e. Herramientas.*
+
+pm2 para monitoreo
+haproxy para el balanceo de cargas
+nfs para montar un directorio virtual compartido
+rsync para el mirroring
+cron para realizar la sicronización de datos cada minuto
+protocolo -> ftp
+jmeter para métricas
 
 *f. Atributos de calidad seleccionados para escalabilidad*
 
