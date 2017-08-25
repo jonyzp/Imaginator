@@ -79,22 +79,22 @@ e. Herramientas.
 ![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
 
 
-## QA2:
+# QA2:
 
 *a. ¿Qué es?*
 
-- El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a través de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
+El atributo de seguridad se refiere a como la aplicación es protegida de perder o suministrar información a equipos, personas o servicios no autorizados por la aplicación, a través de este atributo de calidad se busca que la aplicación tenga una alta probabilidad de que sus activos (datos e información) resista a los ataques de hackers. En general dentro de este atributo se deben de tener en cuenta siempre tres simples atributos que son:
     -	Confidencialidad: el acceso a los activos del sistema esté limitado a usuarios autorizados.
     -	Integridad: los activos del sistema sólo pueden ser borrados o modificados por usuarios autorizados.
     -	Disponibilidad: el acceso a los activos en un tiempo razonable esté garantizado para usuarios autorizados.
 
 *b. ¿Qué patrones se pueden emplear?*
 
-+Patrón de Identidad federada:
+-	Patrón de Identidad federada o autenticaci�n externa:
 	Con este patrón se busca solucionar la gesti�n de identidad y autenticación de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticación de cada usuario no se realice internamente dentro de la aplicación, evitando así exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma información. Todo esto se puede lograr delegando el servicio de autenticación a un proveedor de identidad de confianza externo, separando todo el proceso de autenticación del código de la aplicación, adem�s este servicio externo permite separar fácilmente la autenticación de la autorización; este patrón de seguridad es una buena implementación de Single Sing-On (�nica autenticación).
 	Al incurrir en este patrón se debe de dise�ar la arquitectura para que toda la información se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
 
-+Patrón Gatekeeper:
+-	Patrón Gatekeeper:
 	Este patrón act�a como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar da�os o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
 	Dicho patrón se puede dise�ar para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a�n m�s el riesgo de que la seguridad sea vulnerada.
 
@@ -112,18 +112,26 @@ e. Herramientas.
 | • Medida de respuesta | devuelve la información de que datos trataron de modificar y la hora|
 
 
-d. ¿Qué tacticas se pueden emplear?
+*d. ¿Qué tacticas se pueden emplear?*
 
--	Autenticación: los clientes de nuestras aplicaciones o servicios deben ser identificados de forma �nica, sean usuarios finales,         otros servicios o computadoras externas.
--	Autorización: no solo es necesario saber qui�nes acceden a nuestros activos, también es necesario establecer que es lo que pueden       hacer con ellos. Un nivel de autorización dado determina que tipo de operaciones o transacciones puede efectuar un cliente dado         sobre un recurso dado.
--	Registro y Auditoria: luego de efectuada una operación, es importante que esta sea registrada adecuadamente, en particular es           esencial si queremos evitar el repudio de transacciones efectuada por un cliente.
+ -	Detecci�n	de	intrusos
+ -	Detecci�n	de	denegaci�n 
+ -	Verificar	la	integridad	de	los	mensajes
+ -	Detectar	retardo	de	mensajes
+ -	Identificaci�n
+ -	Autenticar 
+ -	Autorizar 
+ -	Limitar	el	acceso
+ -	Limitar	la	exposici�n
+ -	Cifrar	los	datos 
 
 
 *e. Qué herramientas se pueden utilizar para lograrlo*
 
 -	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci�n de los usuarios a trav�s de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi�n iniciada durante todo el recorrido de un usuario por la aplicaci�n.
--	JSlint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
--	JSHint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
+-	JSlint: Es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
+-	JSHint: Es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
+-	Sonar Scaner: Es un analizador de codigo estatico que nos facilita el analisis de las aplicaciones en cuanto a bucks, vulnerabiidades y malas practicas del codigo.
 
 
 *f. Atributos de calidad seleccionados para escalabilidad*
@@ -132,7 +140,7 @@ Para esta capa de servicio se tienen en cuenta los atributos de Consistencia y D
 Para el escenario que vamos a manejar es importante que el servicio de seguridad se encuentre siempre activo para disminuir el riesgo de que un ataque a la plataforma sea exitoso, a su vez la capa de seguridad tiene que estar presente a lo largo de todo el comportamiento de la aplicación para poder garantizar la consistencia de los datos que se manejan internamente en la plataforma.
 
 
-*Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico*
+##2.Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico
 
 
 | - | Descripción |
@@ -163,3 +171,27 @@ Para el escenario que vamos a manejar es importante que el servicio de seguridad
 | • Respuesta | El sistema rechaza la petición |
 | • Medida de respuesta | informa que trataron de eliminar un usuario |
 
+
+##3.Diseño:	En	Aplicación	y	en	Sistema
+
+
+*a. Vistas	de	arquitectura.* 
+
+![Architecture](arquitectura_seguridad)
+
+*b. Patrones	de	arquitectura.*
+
+-	Patrón de Identidad federada o autenticaci�n externa
+
+*d. Tácticas.*
+
+-	Autenticación: los clientes de nuestras aplicaciones o servicios deben ser identificados de forma �nica, sean usuarios finales,         otros servicios o computadoras externas.
+-	Autorización: no solo es necesario saber qui�nes acceden a nuestros activos, también es necesario establecer que es lo que pueden       hacer con ellos. Un nivel de autorización dado determina que tipo de operaciones o transacciones puede efectuar un cliente dado         sobre un recurso dado.
+-	Encriptar los datos: es necesario que los datos de mayor importancia para la aplicaci�n y los usuarios sea encriptada para que no pueda ser capturada y leida facilmente por maliciosos.
+- Asegurar el medio: en algunas aplicaciones es de vital importancia que se usen protocolos que aseguren el medio por el cual viaja la informaci�n (Internet), empleando protocolos como HTTPS.
+
+
+*e. Herramientas.*
+
+-	Sonar Scaner: Es un analizador de codigo estatico que nos facilita el analisis de las aplicaciones en cuanto a bucks, vulnerabiidades y malas practicas del codigo.
+-	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci�n de los usuarios a trav�s de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi�n iniciada durante todo el recorrido de un usuario por la aplicaci�n.
