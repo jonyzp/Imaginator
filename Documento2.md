@@ -60,6 +60,13 @@ Se puede implementar un sistema de replicación del web server como táctica par
 
 pm2 para monitoreo
 haproxy para el balanceo de cargas
+nsh para comunicacion con el file server, es muy manual
+nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y el lo manda autom al cloud
+rsync para el mirroring
+cron para realizar la sicronizacion de datos cada minuto
+glusterFS para NAS
+protocolos -> ftp, scp, http
+jmeter para métricas
 
 *e. Atributos de calidad seleccionados para escalabilidad*
 
