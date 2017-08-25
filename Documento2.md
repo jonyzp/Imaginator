@@ -16,7 +16,76 @@
 
 *b. ¿Qué patrones se pueden emplear?*
 
-- Teniendo en cuenta los **patrones** definidos para escalabilidad en toda la arquitectura, se escogió la siguiente lista según el impacto que tienen sobre la **capa de servicio**.
+- Teniendo en cuenta los slides con la información concerniente a HA, tenemos los siguientes patrones:
++ Failover
++ Failback
++ Replication
++ Redundancy
++ Virtualization
++ Continuous maintenance:
+* Corrective maintenance
+* Preventive maintenance
+* Perfective maintenance
++ Graceful and step-wise functionality degradation pattern
++ Asynchronous and services-based integration with external	interfaces.
++ Stateless and	lightweight	application	components:
++ Continuous	incremental	code	and	data	replication
++ Availability	trade-off	using	the	CAP	theorem (CAP: Consistency,	Availibility,	Partition Tolerance)
+
+*c. Especificación mediante escenarios*
+
+
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
+| • Fuente de Estimulo | Origen	interno	o externo de fallos |
+| • Estimulo | Server crash |
+| • Artefacto | App |
+| • Ambiente | En normal
+| • Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
+| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+
+
+*d. ¿Qué tácticas se pueden emplear?*
+
+Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
+Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
+Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
+
+*e. Qué herramientas se pueden utilizar para lograrlo*
+
+pm2 para monitoreo
+haproxy para el balanceo de cargas
+nsh para comunicacion con el file server, es muy manual
+nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y lo manda automáticamente al cloud
+rsync para el mirroring
+cron para realizar la sicronización de datos cada minuto
+glusterFS para NAS
+protocolos -> ftp, scp, http
+jmeter para métricas
+
+
+**2.	Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico**
+
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
+| • Fuente de Estimulo | La petición de un Usuario con datos corruptos |
+| • Estimulo | Se cae el Servidor |
+| • Artefacto | App |
+| • Ambiente | En normal
+| • Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
+| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+
+| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
+| Bring down the network interface  | ● Check overall application availability
+| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
+
+**3.	Diseño:	En	Aplicación	y	en	Sistema.**
+a. Vistas	de	arquitectura.
+b. Patrones	de	arquitectura.
+- Teniendo en cuenta los **patrones** definidos para escalabilidad en toda la arquitectura y que estos patrones deben ser enfocados en permitir la disponibilidad del servicio, se pueden listar los siguientes según el impacto que tienen sobre esta **capa de servicio**.
+
 + Distribuited computing pattern :: Debido a que distribuye la carga sobre las diferentes instancias del servidor, nos permite contar con la capacidad de tolerar una falla de uno de los servidores, lo que se traduce en disponibilidad.
 + SOA    ::   Este patrón, además de ser ampliamente utilizado, nos beneficia en gran manera al permitir ser accedidos desde gran número de dispositivos, en cualquier momento y en cualquier lugar, con la gran ventaja de permitir una interacción dinámica en donde no se tiene amarrado al usuario, sino que se le responde cada vez que haga la petición, pero no necesita estar conectado durante todo el tiempo con la aplicación, ni demandando gran cantidad de datos como templates html cada que se haga una petición.
 + Parallel computing pattern :: Este patrón puede ser tomado en cuenta por su principal función, pues nos permite procesar las instrucciones de manera paralela y en consecuencia nos lleva a terminar las operaciones en la mitad del tiempo; lo que resulta en la capacidad para cada servidor de atender  mayor número de usuarios, motivo por el cual beneficia la disponibilidad del servicio, aunque cabe aclarar que este patrón es más enfocado en beneficiar la parte del rendimiento.
@@ -30,56 +99,14 @@
 | Health Endpoint Monitoring | Implement functional checks in an application that external tools can access through exposed endpoints at regular intervals |
 | Queue-Based Load Leveling | Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads. |
 | Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
-
-*c. Especificación mediante escenarios*
-
-
-| - | Descripción |
-| :--: | :---: |
-| **Escenario 1** |  |
-| • Fuente de Estimulo | La petición de un Usuario con datos corruptos |
-| • Estimulo | Se cae el Servidor |
-| • Artefacto | App |
-| • Ambiente | En normal
-| • Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
-| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
-
-> Con este escenario basta o hay que agregar más?
-
-| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
-| Bring down the network interface  | ● Check overall application availability
-| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
-
-*d. ¿Qué tácticas se pueden emplear?*
-
-Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
-Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
-Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
-
-*e. Qué herramientas se pueden utilizar para lograrlo*
-
-pm2 para monitoreo
-haproxy para el balanceo de cargas
-nsh para comunicacion con el file server, es muy manual
-nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y el lo manda autom al cloud
-rsync para el mirroring
-cron para realizar la sicronizacion de datos cada minuto
-glusterFS para NAS
-protocolos -> ftp, scp, http
-jmeter para métricas
-
-*e. Atributos de calidad seleccionados para escalabilidad*
-
-Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para _esta_ capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
-
-2.	Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico
-
-3.	Diseño:	En	Aplicación	y	en	Sistema.
-a. Vistas	de	arquitectura.
-b. Patrones	de	arquitectura.
+    
 c. Best	Practices.
 d. Tácticas.
 e. Herramientas.
+
+*f. Atributos de calidad seleccionados para escalabilidad*
+
+Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para _esta_ capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
 
 *Diagrama*
 
@@ -98,12 +125,12 @@ e. Herramientas.
 *b. ¿Qué patrones se pueden emplear?*
 
 +Patrón de Identidad federada:
-	Con este patrón se busca solucionar la gesti�n de identidad y autenticación de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticación de cada usuario no se realice internamente dentro de la aplicación, evitando así exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma información. Todo esto se puede lograr delegando el servicio de autenticación a un proveedor de identidad de confianza externo, separando todo el proceso de autenticación del código de la aplicación, adem�s este servicio externo permite separar fácilmente la autenticación de la autorización; este patrón de seguridad es una buena implementación de Single Sing-On (�nica autenticación).
-	Al incurrir en este patrón se debe de dise�ar la arquitectura para que toda la información se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
+	Con este patrón se busca solucionar la gesti�n de identidad y autenticación de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticación de cada usuario no se realice internamente dentro de la aplicación, evitando así exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma información. Todo esto se puede lograr delegando el servicio de autenticación a un proveedor de identidad de confianza externo, separando todo el proceso de autenticación del código de la aplicación, adem�s este servicio externo permite separar fácilmente la autenticación de la autorización; este patrón de seguridad es una buena implementación de Single Sing-On (�nica autenticación).
+	Al incurrir en este patrón se debe de dise�ar la arquitectura para que toda la información se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
 
 +Patrón Gatekeeper:
-	Este patrón act�a como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar da�os o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
-	Dicho patrón se puede dise�ar para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a�n m�s el riesgo de que la seguridad sea vulnerada.
+	Este patrón act�a como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar da�os o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
+	Dicho patrón se puede dise�ar para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a�n m�s el riesgo de que la seguridad sea vulnerada.
 
 *c. Especificación mediante escenarios*
 
@@ -128,7 +155,7 @@ d. ¿Qué tacticas se pueden emplear?
 
 *e. Qué herramientas se pueden utilizar para lograrlo*
 
--	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci�n de los usuarios a trav�s de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi�n iniciada durante todo el recorrido de un usuario por la aplicaci�n.
+-	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci�n de los usuarios a trav�s de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi�n iniciada durante todo el recorrido de un usuario por la aplicaci�n.
 -	JSlint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
 -	JSHint: es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
 
