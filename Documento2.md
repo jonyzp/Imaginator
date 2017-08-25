@@ -1,6 +1,6 @@
 ## Atributos de calidad seleccionados:
 
-* QA1: _Disponibilidad de servicio_ Estudiante: _Jonathan Zapata Castaño_
+* QA1: _Disponibilidad de Servicio_ Estudiante: _Jonathan Zapata Castaño_
 
 * QA2: _Seguridad de la Aplicación_ Estudiante: _Mauricio Hoyos Ardila_
 
@@ -16,7 +16,7 @@
 
 *b. ¿Qué patrones se pueden emplear?*
 
-- Teniendo en cuenta los slides proveídas por el profesor con la información concerniente a HA, tenemos los siguientes patrones:
+Teniendo en cuenta los slides proveídas por el profesor con la información concerniente a HA, tenemos los siguientes patrones:
 
 + Failover
 + Failback
@@ -24,14 +24,14 @@
 + Redundancy
 + Virtualization
 + Continuous maintenance:
-* Corrective maintenance
-* Preventive maintenance
-* Perfective maintenance
+Corrective maintenance
+Preventive maintenance
+Perfective maintenance
 + Graceful and step-wise functionality degradation pattern
 + Asynchronous and services-based integration with external	interfaces.
 + Stateless and	lightweight	application	components:
-+ Continuous	incremental	code	and	data	replication
-+ Availability	trade-off	using	the	CAP	theorem (CAP: Consistency,	Availibility,	Partition Tolerance)
++ Continuous incremental code and data replication
++ Availability trade-off using the CAP theorem (CAP: Consistency, Availibility,	Partition Tolerance)
 
 *c. Especificación mediante escenarios*
 
@@ -39,18 +39,18 @@
 | - | Descripción |
 | :--: | :---: |
 | **Escenario 1** |  |
-| • Fuente de Estimulo | Origen	interno	o	externo	de	fallos (Gente, HW, SW, Infraestructura física, ambiente físico) |
-| • Estimulo | Falla	concreta,	que	puede	ser: Omisión, Crash, Incorrect Timing, Incorrect Response |
-| • Artefacto | Componente	altamente	disponible:	App,	SO,	BD,	Módulo,	etc. |
-| • Ambiente |	En	normal,	bajo	la	ocurrencia	de	una	fallo,	en	recuperación,	etc
-| • Respuesta | Posibles	reacciones	a	un	fallo	del	sistema.	Primero	el	fallo	debe	ser	 detectado,	luego	recuperarse
-| • Medida de respuesta | tiempo	de	disponibilidad	en	%.	Tiempo	para	detectar	el	 fallo,	para	corregirlo
+| Fuente de Estimulo | Origen	interno	o	externo	de	fallos (Gente, HW, SW, Infraestructura física, ambiente físico) |
+| Estimulo | Falla	concreta,	que	puede	ser: Omisión, Crash, Incorrect Timing, Incorrect Response |
+| Artefacto | Componente	altamente	disponible:	App,	SO,	BD,	Módulo,	etc. |
+| Ambiente |	En	normal,	bajo	la	ocurrencia	de	una	fallo,	en	recuperación,	etc
+| Respuesta | Posibles	reacciones	a	un	fallo	del	sistema.	Primero	el	fallo	debe	ser	 detectado,	luego	recuperarse
+| Medida de respuesta | Tiempo	de	disponibilidad	en	%.	Tiempo	para	detectar	el	 fallo,	para	corregirlo
 
 
 
 *d. ¿Qué tácticas se pueden emplear?*
 
-- Detección de Fallas:
+Detección de Fallas:
 * Ping / Echo  
 * Monitor
 * Heartbeat
@@ -61,8 +61,8 @@
 * Exception Detection
 * Self-test
 
-- Recuperación de Fallas
-- Preparación y reparación:
+**Recuperación ante Fallas**
+Preparación y reparación:
 * Active Redundancy
 * Passive Redundancy
 * Spare
@@ -78,15 +78,15 @@
 
 *e. Qué herramientas se pueden utilizar para lograrlo*
 
-pm2 para monitoreo
-haproxy para el balanceo de cargas
-nsh para comunicacion con el file server, es muy manual
-nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y lo manda automáticamente al cloud
-rsync para el mirroring
-cron para realizar la sicronización de datos cada minuto
-glusterFS para NAS
-protocolos -> ftp, scp, http
-jmeter para métricas
+* pm2 para monitoreo
+* haproxy para el balanceo de cargas
+* nsh para comunicacion con el file server, es muy manual
+* nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y lo manda * automáticamente al cloud
+* rsync para el mirroring
+* cron para realizar la sicronización de datos cada minuto
+* glusterFS para NAS
+* protocolos -> ftp, scp, http
+* jmeter para métricas
 
 
 **2.	Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico**
@@ -94,23 +94,25 @@ jmeter para métricas
 | - | Descripción |
 | :--: | :---: |
 | **Escenario 1** |  |
-| • Fuente de Estimulo | La petición de un Usuario con datos corruptos |
-| • Estimulo | Se cae el Servidor |
-| • Artefacto | App |
-| • Ambiente | En normal
-| • Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
-| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+| Fuente de Estimulo | La petición de un Usuario con datos corruptos |
+| Estimulo | Se cae el Servidor |
+| Artefacto | App |
+| Ambiente | En normal
+| Respuesta | Volver a lanzar la aplicación notificando al usuario que conserve la paciencia.
+| Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 | **Escenario 2** |  |
+| Fuente de Estimulo | Origen	interno	o externo de fallos |
+| Estimulo | Server crash |
+| Artefacto | App |
+| Ambiente | En normal
+| Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
+| Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+
 | Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
 | Bring down the network interface  | ● Check overall application availability
 | Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
 
-| • Fuente de Estimulo | Origen	interno	o externo de fallos |
-| • Estimulo | Server crash |
-| • Artefacto | App |
-| • Ambiente | En normal
-| • Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
-| • Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+
 
 **3.	Diseño:	En	Aplicación	y	en	Sistema.**
 a. Vistas	de	arquitectura.
