@@ -16,11 +16,12 @@
 
 *b. 驴Qu茅 patrones se pueden emplear?*
 
-Teniendo en cuenta los slides prove铆das por el profesor con la informaci贸n concerniente a HA, tenemos los siguientes patrones:
+Teniendo en cuenta las slides y el art铆culo "Ensuring High Availability for
+Your Enterprise Web Applications" prove铆dos con la informaci贸n concerniente a HA, tenemos los siguientes patrones:
 
 + Failover
 + Failback
-+ Replication
++ Replication (Active replication, Passive replication)
 + Redundancy
 + Virtualization
 + Continuous maintenance:
@@ -197,13 +198,13 @@ El atributo de seguridad se refiere a como la aplicaci贸n es protegida de perder
 
 *b. 驴Qu茅 patrones se pueden emplear?*
 
--	Patr贸n de Identidad federada o autenticaci髇 externa:
-	Con este patr贸n se busca solucionar la gesti髇 de identidad y autenticaci贸n de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticaci贸n de cada usuario no se realice internamente dentro de la aplicaci贸n, evitando as铆 exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma informaci贸n. Todo esto se puede lograr delegando el servicio de autenticaci贸n a un proveedor de identidad de confianza externo, separando todo el proceso de autenticaci贸n del c贸digo de la aplicaci贸n, adem醩 este servicio externo permite separar f谩cilmente la autenticaci贸n de la autorizaci贸n; este patr贸n de seguridad es una buena implementaci贸n de Single Sing-On (鷑ica autenticaci贸n).
-	Al incurrir en este patr贸n se debe de dise馻r la arquitectura para que toda la informaci贸n se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
+-	Patr贸n de Identidad federada o autenticaci锟絥 externa:
+	Con este patr贸n se busca solucionar la gesti锟絥 de identidad y autenticaci贸n de los diferentes usuarios que se puedan encontrar dentro de un proceso o sistema, al permitir que la autenticaci贸n de cada usuario no se realice internamente dentro de la aplicaci贸n, evitando as铆 exponer las vulnerabilidades de seguridad y simplificando el manejo de los usuarios, permitiendo que un solo usuario ingrese a diferentes plataformas inclusive de diferentes empresas con la misma informaci贸n. Todo esto se puede lograr delegando el servicio de autenticaci贸n a un proveedor de identidad de confianza externo, separando todo el proceso de autenticaci贸n del c贸digo de la aplicaci贸n, adem锟絪 este servicio externo permite separar f谩cilmente la autenticaci贸n de la autorizaci贸n; este patr贸n de seguridad es una buena implementaci贸n de Single Sing-On (锟絥ica autenticaci贸n).
+	Al incurrir en este patr贸n se debe de dise锟絘r la arquitectura para que toda la informaci贸n se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
 
 -	Patr贸n Gatekeeper:
-	Este patr贸n act鷄 como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando as铆 un proceso de limpieza  y detecci贸n de solicitudes que puedan realizar da駉s o modificaciones no autorizadas por cada tipo de cliente en toda la aplicaci贸n, este patr贸n puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
-	Dicho patr贸n se puede dise馻r para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a鷑 m醩 el riesgo de que la seguridad sea vulnerada.
+	Este patr贸n act锟絘 como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando as铆 un proceso de limpieza  y detecci贸n de solicitudes que puedan realizar da锟給s o modificaciones no autorizadas por cada tipo de cliente en toda la aplicaci贸n, este patr贸n puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
+	Dicho patr贸n se puede dise锟絘r para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo a锟絥 m锟絪 el riesgo de que la seguridad sea vulnerada.
 
 *c. Especificaci贸n mediante escenarios*
 
@@ -221,21 +222,21 @@ El atributo de seguridad se refiere a como la aplicaci贸n es protegida de perder
 
 *d. 驴Qu茅 tacticas se pueden emplear?*
 
- -	Detecci髇	de	intrusos
- -	Detecci髇	de	denegaci髇 
+ -	Detecci锟絥	de	intrusos
+ -	Detecci锟絥	de	denegaci锟絥 
  -	Verificar	la	integridad	de	los	mensajes
  -	Detectar	retardo	de	mensajes
- -	Identificaci髇
+ -	Identificaci锟絥
  -	Autenticar 
  -	Autorizar 
  -	Limitar	el	acceso
- -	Limitar	la	exposici髇
+ -	Limitar	la	exposici锟絥
  -	Cifrar	los	datos 
 
 
 *e. Qu茅 herramientas se pueden utilizar para lograrlo*
 
--	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci髇 de los usuarios a trav閟 de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi髇 iniciada durante todo el recorrido de un usuario por la aplicaci髇.
+-	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci锟絥 de los usuarios a trav锟絪 de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi锟絥 iniciada durante todo el recorrido de un usuario por la aplicaci锟絥.
 -	JSlint: Es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
 -	JSHint: Es un analizador de codigo estatico enfocado a Java Script, que busca las vulnerabilidades o malas practicas que pueda contener el codigo realizado para el servidor.
 -	Sonar Scaner: Es un analizador de codigo estatico que nos facilita el analisis de las aplicaciones en cuanto a bucks, vulnerabiidades y malas practicas del codigo.
@@ -288,17 +289,17 @@ Para el escenario que vamos a manejar es importante que el servicio de seguridad
 
 *b. Patrones	de	arquitectura.*
 
--	Patr贸n de Identidad federada o autenticaci髇 externa
+-	Patr贸n de Identidad federada o autenticaci锟絥 externa
 
 *d. T谩cticas.*
 
 -	Autenticaci贸n: los clientes de nuestras aplicaciones o servicios deben ser identificados de forma 锟絥ica, sean usuarios finales,         otros servicios o computadoras externas.
 -	Autorizaci贸n: no solo es necesario saber qui锟絥es acceden a nuestros activos, tambi茅n es necesario establecer que es lo que pueden       hacer con ellos. Un nivel de autorizaci贸n dado determina que tipo de operaciones o transacciones puede efectuar un cliente dado         sobre un recurso dado.
--	Encriptar los datos: es necesario que los datos de mayor importancia para la aplicaci髇 y los usuarios sea encriptada para que no pueda ser capturada y leida facilmente por maliciosos.
-- Asegurar el medio: en algunas aplicaciones es de vital importancia que se usen protocolos que aseguren el medio por el cual viaja la informaci髇 (Internet), empleando protocolos como HTTPS.
+-	Encriptar los datos: es necesario que los datos de mayor importancia para la aplicaci锟絥 y los usuarios sea encriptada para que no pueda ser capturada y leida facilmente por maliciosos.
+- Asegurar el medio: en algunas aplicaciones es de vital importancia que se usen protocolos que aseguren el medio por el cual viaja la informaci锟絥 (Internet), empleando protocolos como HTTPS.
 
 
 *e. Herramientas.*
 
 -	Sonar Scaner: Es un analizador de codigo estatico que nos facilita el analisis de las aplicaciones en cuanto a bucks, vulnerabiidades y malas practicas del codigo.
--	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci髇 de los usuarios a trav閟 de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi髇 iniciada durante todo el recorrido de un usuario por la aplicaci髇.
+-	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticaci锟絥 de los usuarios a trav锟絪 de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesi锟絥 iniciada durante todo el recorrido de un usuario por la aplicaci锟絥.
