@@ -141,16 +141,18 @@ Preparación y reparación:
 
 
 **3.	Diseño:	En	Aplicación	y	en	Sistema.**
-a. Vistas	de	arquitectura.
+
+*a. Vistas	de	arquitectura.*
 
 * Disponibilidad de Servicio
 
 ![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
 
 * Disponibilidad de Datos
+
 ![Architecture](https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg)
 
-b. Patrones	de	arquitectura.
+*b. Patrones	de	arquitectura.*
 
 Disponibilidad de Servicio
 
