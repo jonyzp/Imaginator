@@ -185,7 +185,7 @@ Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tol
 *Diagrama*
 
 ![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
-(https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg)
+![Architecture](https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg)
 
 
 # QA2:
