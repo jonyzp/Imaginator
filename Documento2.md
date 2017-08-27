@@ -1,6 +1,6 @@
 ## Atributos de calidad seleccionados:
 
-* QA1: _Disponibilidad de Servicio_ Estudiante: _Jonathan Zapata Castaño_
+* QA1: _Disponibilidad de Servicio_ Estudiante: _Jonathan Zapata Castaño y Pablo Quijano Jaramillo_
 
 * QA2: _Seguridad de la Aplicación_ Estudiante: _Mauricio Hoyos Ardila_
 
