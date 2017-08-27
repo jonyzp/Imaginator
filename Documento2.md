@@ -19,20 +19,20 @@
 Teniendo en cuenta las slides y el artículo "Ensuring High Availability for
 Your Enterprise Web Applications" proveídos con la información concerniente a HA, tenemos los siguientes patrones:
 
-+ Failover
-+ Failback
-+ Replication (Active replication, Passive replication)
-+ Redundancy
-+ Virtualization
-+ Continuous maintenance:
-Corrective maintenance
-Preventive maintenance
-Perfective maintenance
-+ Graceful and step-wise functionality degradation pattern
-+ Asynchronous and services-based integration with external	interfaces.
-+ Stateless and	lightweight	application	components:
-+ Continuous incremental code and data replication
-+ Availability trade-off using the CAP theorem (CAP: Consistency, Availibility,	Partition Tolerance)
++ Failover: Es la capacidad del sistema de ser operativo en un evento de un fallo de un nodo o componente, cambiando de forma transparente a otro componente de copia de seguridad.
++ Failback: Usualmente sucede después del failover, en el que el nodo o sitio primario se recuperará de la falla y estará completamente operativo.
++ Replication (Active replication, Passive replication): Esto implica copiar los datos del nodo primario a todas sus copias para que sea fácil de cambiar en caso de failover.
++ Redundancy: Habrán múltiples componentes redundantes en el sistema para facilitar el failover.
++ Virtualization: Las interrupciones causadas por el hardware y el sistema operativo pueden reducirse mediante el empleo de la virtualización.
++ Continuous maintenance: Las actividades de mantenimiento regular de los componentes es clave para mantener la infraestructura en buena salud. Existen 3 tipos: mantenimiento correctivo, mantenimiento preventivo y mantenimiento de perfeccionamiento
++ Graceful and step-wise functionality degradation pattern: Este diseño minimiza el impacto durante los escenarios de disponibilidad.
++ Asynchronous and services-based integration with external	interfaces: La opresión del acoplamiento de la aplicación en sus interfaces externas puede ser reducida adoptando un patrón de integración asincrónico (Utilizando AJAX).
++ Stateless and	lightweight	application	components: Cuanto más componentes de la aplicación sean ligeros, más se pueden replicar, y por lo tanto, más posibilidades de disponibilidad que tienen.
++ Continuous incremental code and data replication: Uno de los principales principios de disponibilidad es el código y la replicación de datos.
++ Availability trade-off using the CAP theorem (CAP: Consistency, Availibility,	Partition Tolerance): El teorema consiste en los siguientes principios:
+● La consistencia proporciona datos consistentes en todos los nodos del clúster.
+● La Disponibilidad garantiza que el clúster esté siempre operativo.
+● La tolerancia de partición garantiza que el clúster está operativo a pesar particiones en la red.
 
 *c. Especificación mediante escenarios*
 
