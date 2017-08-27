@@ -88,6 +88,8 @@ Preparación y reparación:
 * glusterFS para NAS
 * protocolos -> ftp, scp, http
 * jmeter para métricas
+* mondoDB Replication para la base de datos
+
 
 
 **2.	Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico**
@@ -182,6 +184,8 @@ Para la detección de la caída del web server se pueden emplear tácticas de mo
 Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
 Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
 
+Para la base de datos usamos un conjunto de réplicas en MongoDB, que son un grupo de procesos mongod que mantienen el mismo conjunto de datos. Los conjuntos de réplicas proporcionan redundancia y alta disponibilidad y son la base de todas las implementaciones de producción.
+
 *e. Herramientas.*
 
 pm2 para monitoreo
@@ -190,7 +194,7 @@ nfs para montar un directorio virtual compartido
 rsync para el mirroring
 cron para realizar la sicronización de datos cada minuto
 protocolo -> ftp
-jmeter para métricas
+jmeter para métricas, 
 mondoDB Replication para la base de datos
 
 *f. Atributos de calidad seleccionados para escalabilidad*
