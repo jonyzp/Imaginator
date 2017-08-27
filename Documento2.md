@@ -1,6 +1,6 @@
 ## Atributos de calidad seleccionados:
 
-* QA1: _Disponibilidad de Servicio_ Estudiante: _Jonathan Zapata Castaño y Pablo Quijano Jaramillo_
+* QA1: _Disponibilidad de Servicio y Datos_ Estudiante: _Jonathan Zapata Castaño y Pablo Quijano Jaramillo_
 
 * QA2: _Seguridad de la Aplicación_ Estudiante: _Mauricio Hoyos Ardila_
 
@@ -94,6 +94,8 @@ Preparación y reparación:
 
 **2.	Análisis:	Mediante	escenarios	y/o propuesta	en	marco	teorico**
 
+* Disponibilidad de servicio
+
 | - | Descripción |
 | :--: | :---: |
 | **Escenario 1** |  |
@@ -110,14 +112,23 @@ Preparación y reparación:
 | Ambiente | En normal
 | Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
-| **Escenario 3** |  |
+|Escenarios * |
+| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
+| Bring down the network interface  | ● Check overall application availability
+| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
+
+* Disponibilidad de Datos
+
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
 | Fuente de Estimulo | Problema interno o externo del servidor |
 | Estimulo | Se cae el Servidor |
 | Artefacto | BD |
 | Ambiente | En normal
 | Respuesta | Hacer uspo del servidor donde está la base de datos secundaria.
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
-| **Escenario 4** |  |
+| **Escenario 2** |  |
 | Fuente de Estimulo | Origen	interno	o externo de fallos |
 | Estimulo | Server crash |
 | Artefacto | BD |
@@ -125,15 +136,24 @@ Preparación y reparación:
 | Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 
-| Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
-| Bring down the network interface  | ● Check overall application availability
-| Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
+
 
 
 
 **3.	Diseño:	En	Aplicación	y	en	Sistema.**
 a. Vistas	de	arquitectura.
+
+* Disponibilidad de Servicio
+
+![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
+
+* Disponibilidad de Datos
+![Architecture](https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg)
+
 b. Patrones	de	arquitectura.
+
+Disponibilidad de Servicio
+
 - Teniendo en cuenta los **patrones** definidos para escalabilidad en toda la arquitectura y que estos patrones deben ser enfocados en permitir la disponibilidad del servicio, se pueden listar los siguientes según el impacto que tienen sobre esta **capa de servicio**.
 
 + Distribuited computing pattern :: Debido a que distribuye la carga sobre las diferentes instancias del servidor, nos permite contar con la capacidad de tolerar una falla de uno de los servidores, lo que se traduce en disponibilidad.
@@ -150,7 +170,11 @@ b. Patrones	de	arquitectura.
 | Queue-Based Load Leveling | Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads. |
 | Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
 
+Disponibilidad de Datos:
+
 c. Best	Practices.
+
+Disponibilidad de Servicio
 
 Hardware-related best practices
 • proactive	monitoring	and	alerting	infrastructure
@@ -178,37 +202,52 @@ Network	availability
 • Stateless	sessions	and	lightweight	component	design
 • Data	replication.
 
+Disponibilidad de Datos:
+
 *d. Tácticas.*
 
+Disponibilidad de Servicio
 Para la detección de la caída del web server se pueden emplear tácticas de monitoreo para una posterior recuperación del servidor, lo que se hace básicamente es permitir una conexión constante entre el server y el vigilante por medio del _heartbeat_, de esta manera nos podremos dar cuenta de algún fallo y reaccionar de inmediato con un Failback.
 Como táctica para la escalabilidad de puede implementar un Manejador de cache distribuído.
 Se puede implementar un sistema de replicación del web server como táctica para propiciar el Fault-Tolerance
+
+Disponibilidad de Datos
 
 Para la base de datos usamos un conjunto de réplicas en MongoDB, que son un grupo de procesos mongod que mantienen el mismo conjunto de datos. Los conjuntos de réplicas proporcionan redundancia y alta disponibilidad y son la base de todas las implementaciones de producción.
 
 *e. Herramientas.*
 
+Disponibilidad de Servicio
+
 * pm2 para monitoreo
 * haproxy para el balanceo de cargas
+* nsh para comunicacion con el file server, es muy manual
+* nfs para montar un directorio virtual compartido
+* protocolos -> ftp, scp, http
+
+Disponibilidad de Datos
+
 * nsh para comunicacion con el file server, es muy manual
 * nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y lo manda * automáticamente al cloud
 * rsync para el mirroring
 * cron para realizar la sicronización de datos cada minuto
 * glusterFS para NAS
-* protocolos -> ftp, scp, http
-* jmeter para métricas
 * mondoDB Replication para la base de datos
+
+Otras
+
+* jmeter para métricas
 
 *f. Atributos de calidad seleccionados para escalabilidad*
 
+* Disponibilidad de Servicio
+
 Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para _esta_ capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
+
+* Disponibilidad de Datos
+
 Mientras que en la base de datos, se contará con Aviability y Consistency, ya que ambos son de vital importancia en el manejo de datos,
 estos deben ser siempre consistentes independientemente de si se está usando la base de datos principal, o una secundaria en caso de failover, y en el caso de la disponibilidad, necesitamos que el usuario siempre tenga acceso a sus datos.
-
-*Diagrama*
-
-![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
-![Architecture](https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg)
 
 
 # QA2:
