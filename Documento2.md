@@ -12,7 +12,7 @@
 
 *a. ¿Qué es?*
 
-- La alta disponibilidad del servicio es la capacidad de un sistema de soportar la recepción de un gran número de peticiones al mismo tiempo sin perder su habilidad de respuesta, además de permitir ser accedido desde [cualquier lugar](https://www.igi-global.com/dictionary/service-availability/44258). La alta disponibilidad es crítica para esta capa, pues es donde se realizan las operaciones concernientes a la lógica del negocio, y es la única que tiene acceso a los datos, por lo que es crucial propiciar el más alto porcentaje posible de uptime, el cual se determina según la concurrencia de usuarios por segundo, y por lo general es del 99.xxx %, y la cantidad de 9's en la parte decimal depende principalmente de las necesidades del negocio.
+- La alta disponibilidad del servicio es la capacidad de un sistema de soportar la recepción de un gran número de peticiones al mismo tiempo sin perder su habilidad de respuesta, además de permitir ser accedido desde [cualquier lugar](https://www.igi-global.com/dictionary/service-availability/44258). La alta disponibilidad es crítica para esta capa, pues es donde se realizan las operaciones concernientes a la lógica del negocio, y es la única que tiene acceso a los datos, por lo que es crucial propiciar el más alto porcentaje posible de uptime, el cual se determina según la concurrencia de usuarios por segundo, y por lo general es del 99.999.. %, y la cantidad de 9's en la parte decimal depende principalmente de las necesidades del negocio.
 
 *b. ¿Qué patrones se pueden emplear?*
 
@@ -112,7 +112,7 @@ Preparación y reparación:
 | Ambiente | En normal
 | Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
-|Escenarios * |
+| **Otros Escenarios *** |
 | Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
 | Bring down the network interface  | ● Check overall application availability
 | Bring down the primary node of the web server cluster | ● Check the availability of global gateway page ● Check the availability of static assets
@@ -246,7 +246,7 @@ Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tol
 
 * Disponibilidad de Datos
 
-Mientras que en la base de datos, se contará con Aviability y Consistency, ya que ambos son de vital importancia en el manejo de datos,
+Mientras que en la base de datos, se contará con Availability y Consistency, ya que ambos son de vital importancia en el manejo de datos,
 estos deben ser siempre consistentes independientemente de si se está usando la base de datos principal, o una secundaria en caso de failover, y en el caso de la disponibilidad, necesitamos que el usuario siempre tenga acceso a sus datos.
 
 
