@@ -108,6 +108,20 @@ Preparación y reparación:
 | Ambiente | En normal
 | Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+| **Escenario 3** |  |
+| Fuente de Estimulo | Problema interno o externo del servidor |
+| Estimulo | Se cae el Servidor |
+| Artefacto | BD |
+| Ambiente | En normal
+| Respuesta | Hacer uspo del servidor donde está la base de datos secundaria.
+| Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
+| **Escenario 4** |  |
+| Fuente de Estimulo | Origen	interno	o externo de fallos |
+| Estimulo | Server crash |
+| Artefacto | BD |
+| Ambiente | En normal
+| Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
+| Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 
 | Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
 | Bring down the network interface  | ● Check overall application availability
@@ -177,10 +191,13 @@ rsync para el mirroring
 cron para realizar la sicronización de datos cada minuto
 protocolo -> ftp
 jmeter para métricas
+mondoDB Replication para la base de datos
 
 *f. Atributos de calidad seleccionados para escalabilidad*
 
 Se tuvo en cuenta el Teorema de CAP y seleccionamos Availability y Partition tolerance para _esta_ capa de servicio. Se justifica empezando por el criterio de Disponibilidad, pues es de notar que esta capa es la más crítica a la hora de la conexión, ya que si se llega a presentar un fallo, se perdería la interacción con el usuario, presentándose una insatisfacción lo que desencadenaría una serie de consecuencias en el entorno real. Asumiendo que como premisa está la palabra escalabilidad, tenemos que pensar en un futuro con un incremento de peticiones por segundo, por lo que necesitamos la capacidad en el sistema de repartir su carga entre las diferentes instancias del servidor, y permitir una mejor experiencia con el usuario, razón por la cual escogimos Partitioning para permitir la escalabilidad.
+Mientras que en la base de datos, se contará con Aviability y Consistency, ya que ambos son de vital importancia en el manejo de datos,
+estos deben ser siempre consistentes independientemente de si se está usando la base de datos principal, o una secundaria en caso de failover, y en el caso de la disponibilidad, necesitamos que el usuario siempre tenga acceso a sus datos.
 
 *Diagrama*
 
