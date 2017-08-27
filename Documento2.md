@@ -188,14 +188,16 @@ Para la base de datos usamos un conjunto de réplicas en MongoDB, que son un gru
 
 *e. Herramientas.*
 
-pm2 para monitoreo
-haproxy para el balanceo de cargas
-nfs para montar un directorio virtual compartido
-rsync para el mirroring
-cron para realizar la sicronización de datos cada minuto
-protocolo -> ftp
-jmeter para métricas, 
-mondoDB Replication para la base de datos
+* pm2 para monitoreo
+* haproxy para el balanceo de cargas
+* nsh para comunicacion con el file server, es muy manual
+* nfs para montar un directorio virtual compartido, tipo dropbox que yo guardo en mi pc y lo manda * automáticamente al cloud
+* rsync para el mirroring
+* cron para realizar la sicronización de datos cada minuto
+* glusterFS para NAS
+* protocolos -> ftp, scp, http
+* jmeter para métricas
+* mondoDB Replication para la base de datos
 
 *f. Atributos de calidad seleccionados para escalabilidad*
 
