@@ -4,10 +4,10 @@
 
 * QA2: _Seguridad de la Aplicación_ Estudiante: _Mauricio Hoyos Ardila_
 
-* QA3: ____________________________ Estudiante: __________________________
+* QA3: _Rendimiento de la aplicación_ Estudiante: _Mayerli López_
 
 ## QA1: Disponibilidad de servicio
-    
+
 ### Marco de referencia:
 
 *a. ¿Qué es?*
@@ -170,7 +170,7 @@ Disponibilidad de Servicio
 |:--:|:--:|
 | Health Endpoint Monitoring | Implement functional checks in an application that external tools can access through exposed endpoints at regular intervals |
 | Queue-Based Load Leveling | Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads. |
-| Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
+| Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. |
 
 Disponibilidad de Datos:
 * Los servidores de bases de datos deben diseñarse en una configuración agrupada.
@@ -271,7 +271,7 @@ El atributo de seguridad se refiere a como la aplicación es protegida de perder
 	Al incurrir en este patrón se debe de disenar la arquitectura para que toda la información se encuentre en un solo centro de datos para evitar incurrir en problemas con la disponibilidad de datos.
 
 -	Patrón Gatekeeper:
-	Este patrón actua como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar danos o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales. 
+	Este patrón actua como una interface o subcapa que analiza las solicitudes que son hechas por los clientes a un servidor o base de datos, realizando así un proceso de limpieza  y detección de solicitudes que puedan realizar danos o modificaciones no autorizadas por cada tipo de cliente en toda la aplicación, este patrón puede ser implementado como una capa de  alta seguridad protegiendo y siendo muy estricto al tratar todas las solicitudes o puede ser empleado como una capa de seguridad baja donde solo se protejan las solicitudes vitales.
 	Dicho patrón se puede disenar para que cada solicitud procesada no pase directamente al servidor o base de datos, sino que sea redirigida a un host o capa de confianza que realice todos los procesos requeridos disminuyendo aun más el riesgo de que la seguridad sea vulnerada.
 
 * c. Especificación mediante escenarios *
@@ -291,15 +291,15 @@ El atributo de seguridad se refiere a como la aplicación es protegida de perder
 * d. ¿Qué tacticas se pueden emplear? *
 
  -	Detección	de	intrusos
- -	Detección	de	denegación 
+ -	Detección	de	denegación
  -	Verificar	la	integridad	de	los	mensajes
  -	Detectar	retardo	de	mensajes
  -	Identificación
- -	Autenticar 
- -	Autorizar 
+ -	Autenticar
+ -	Autorizar
  -	Limitar	el	acceso
  -	Limitar	la	exposición
- -	Cifrar	los	datos 
+ -	Cifrar	los	datos
 
 
 * e. Qué herramientas se pueden utilizar para lograrlo *
@@ -353,7 +353,7 @@ Para el escenario que vamos a manejar es importante que el servicio de seguridad
 ## 3.Diseño:	En	Aplicación	y	en	Sistema
 
 
-* a. Vistas	de	arquitectura. * 
+* a. Vistas	de	arquitectura. *
 
 ![Architecture](https://github.com/jonyzp/Imaginator/blob/master/arquitectura_seguridad.jpeg)
 
@@ -373,3 +373,114 @@ Para el escenario que vamos a manejar es importante que el servicio de seguridad
 
 -	Sonar Scaner: Es un analizador de codigo estatico que nos facilita el analisis de las aplicaciones en cuanto a bucks, vulnerabiidades y malas practicas del codigo.
 -	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticación de los usuarios a través de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesión iniciada durante todo el recorrido de un usuario por la aplicación.
+
+
+QA3: Rendimiento
+a. ¿Qué es?
+El rendimiento evalúa los componentes de la página web con la función de optimizar el tiempo de respuesta de todos sus requisitos, para esto implementa métodos y técnicas que le ayudan a optimizar su velocidad, la cual es crucial para la experiencia del usuario.
+Este rendimiento es considerado un requisito crítico y no funcional impactando a varios factores, los cuales se pueden apreciar en la siguiente imagen. Entre estos factores se encuentra el de ventaja competitiva aprovechando la velocidad y aumentando los usuarios, aquellos que son leales a sistemas más rápidos.
+
+b. ¿Qué patrones pueden emplear?
+
+Think caching: Almacenar en caché los datos con un mecanismo efectivo y elaborado.
+Desing for failure: Evaluar posibilidades de fracaso, para crear un mecanismo de manejo de fallas. Los elementos comunes de fallo pueden ser:
+Fallos de hardware
+Fallos de seguridad
+Desastres naturales
+Aumento repentino de trafico de usuarios
+Fallo de res
+Fallo de operaciones
+Distributed and parallel computing: Que el programa se pueda distribuir en múltiples nodos de computación. (Ofrece ventaja en rendimiento y escalabilidad)
+Keep it lightweight: Los componentes y páginas deben mantenerse ligeros, reduciendo tamaño general y minimizando número de viajes. (Componentes asincrónicos: JavaScript y XML)
+Nonblocking loads using asynchronous data request: Aprovechar enfoques basados en AJAX, para mejorar comunicación o agregación de datos.
+Use on-demand loading policy: Cargar datos y componente solo cuando sea requerido.
+Batching: Agrupar solicitudes para minimizar el número de idas al servidor  
+Comprehensive performance-based design and testing: Modelar y probar todos los escenarios.
+Simple, modular, and reusable design: Diseñar los componentes para que puedan reutilizarse y probarse fácilmente.
+Accessibility: La falta de esta puede causar problemas en la experiencia del usuario.
+Omni-channel option: Interfaz y tiempo de carga optimo en cualquier dispositivo.
+Loose coupling: Los components deben de estar sueltos, para mejorar el rendimiento ante cualquier fallo de algún componente.
+Continuous and iterative build and testing: Construir código e implementar las pruebas de rendimiento tan pronto como se pueda.
+
+
+c. Especificación mediante escenarios
+-
+Descripción
+Escenario
+
+Fuente de Estimulo: Usuarios con origen interno o externo del sistema.
+Estimulo: Inicio de la transacción con una llegada de un evento, el cual puede ser periódico, esporádico o estocástico.
+Artefacto :El sistema o algún componente, entre ellos está componentes JS y CSS, componentes de imagen y la respuesta del servidor.
+Ambiente: El modelo del funcionamiento puede ser normal, en emergencia, carga máxima y sobrecarga.
+Respuesta: Transacciones con proceso de eventos o cambios en el nivel del servicio.
+Medida de respuesta: Número de transacciones simultaneas, tiempo transcurrido en una solicitud, fecha límite, etc.
+
+En la siguiente imagen se puede apreciar el tiempo de carga de los componentes en el momento de ingresar a la página principal.
+
+d. ¿Qué tácticas se pueden emplear?
+Controlar la demanda de recursos
+Administrar la tasa de muestreo
+Limitar la respuesta de un evento
+Priorizar eventos
+Reducir gastos generales
+Tiempo de ejecución limitados
+Aumentar la eficiencia de los recursos
+Administrar los recursos
+Aumentar los recursos
+Introducir concurrencia
+Mantener múltiples copias de computación
+Mantener múltiples copias de datos
+Tamaños de cola enlazados
+Programar los recursos
+
+e. ¿Qué herramientas se pueden utilizar para lograrlo?
+JProfiler: Es una herramienta que realiza perfiles de código estático y de tiempo de ejecución, mostrando la memoria total y los recursos consumidos por varios componentes de la aplicación. (IDE: entorno de desarrollo integrado)
+JMeter: Es una herramienta de prueba de carga que puede ser utilizada para analizar y medir el desempeño de los servicios con énfasis en aplicaciones web.
+NGINX: Se utiliza para equilibrar la carga entre los servidores back-end, o para proporcionar almacenamiento en caché para un servidor back-end lento.
+
+
+2.Análisis: Mediante escenarios y/o propuesta en marco teorico
+
+Descripción
+Escenario 1
+
+• Fuente de Estimulo: Persona
+• Estimulo: Petición para ingresar a la página principal
+• Artefacto: Componente JS y CSS
+• Ambiente: En normal
+• Respuesta: El sistema cargará los componentes de JS y CSS que tiene agrupados en el sistema
+• Medida de respuesta: Tiempo que tarda el sistema en cargar los componentes de JS y CSS
+
+Descripción
+Escenario 2
+
+• Fuente de Estimulo: Persona
+• Estimulo: Petición para buscar una imagen
+• Artefacto: Respuesta del servidor
+• Ambiente: En normal
+• Respuesta: El sistema buscará en el caché la imagen que el usuario desee
+• Medida de respuesta: Tiempo transcurrido para la solicitud.
+
+3.Diseño: En Aplicación y en Sistema
+a. Vistas de arquitectura.
+
+b. Patrones de arquitectura.
+Computación distribuida y paralela
+diseño ligero
+Almacenamiento en caché
+Invocación de servicios asíncronos
+Carga y carga bajo demanda
+c. Best practices
+Inicialización perezosa del objeto.
+Creación de objetos bajo demanda Aprovechamiento de agrupación de conexiones y agrupación de recursos.
+Llamadas óptimas de recursos.
+Cantidad mínima de transferencia de datos para transacciones ejecutadas frecuentemente.
+Número mínimo de llamadas de recursos.
+d. Tácticas.
+Limitar respuesta de un evento
+Priorizar eventos
+Introducir concurrencia
+Tamaños de cola enlazados
+e. Herramientas.
+JMeter
+NGINX
