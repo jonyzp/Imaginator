@@ -375,112 +375,113 @@ Para el escenario que vamos a manejar es importante que el servicio de seguridad
 -	Passport: Es una libreria de NodeJS que se emplea para realizar la autenticación de los usuarios a través de diferentes plataformas como google, facebook, etc. Tambien permite realizar el manejo de la sesión iniciada durante todo el recorrido de un usuario por la aplicación.
 
 
-QA3: Rendimiento
-a. ¿Qué es?
+## QA3: Rendimiento
+
+*a. ¿Qué es?*
 El rendimiento evalúa los componentes de la página web con la función de optimizar el tiempo de respuesta de todos sus requisitos, para esto implementa métodos y técnicas que le ayudan a optimizar su velocidad, la cual es crucial para la experiencia del usuario.
 Este rendimiento es considerado un requisito crítico y no funcional impactando a varios factores, los cuales se pueden apreciar en la siguiente imagen. Entre estos factores se encuentra el de ventaja competitiva aprovechando la velocidad y aumentando los usuarios, aquellos que son leales a sistemas más rápidos.
 
-b. ¿Qué patrones pueden emplear?
+*b. ¿Qué patrones pueden emplear?*
 
-Think caching: Almacenar en caché los datos con un mecanismo efectivo y elaborado.
-Desing for failure: Evaluar posibilidades de fracaso, para crear un mecanismo de manejo de fallas. Los elementos comunes de fallo pueden ser:
-Fallos de hardware
-Fallos de seguridad
-Desastres naturales
-Aumento repentino de trafico de usuarios
-Fallo de res
-Fallo de operaciones
-Distributed and parallel computing: Que el programa se pueda distribuir en múltiples nodos de computación. (Ofrece ventaja en rendimiento y escalabilidad)
-Keep it lightweight: Los componentes y páginas deben mantenerse ligeros, reduciendo tamaño general y minimizando número de viajes. (Componentes asincrónicos: JavaScript y XML)
-Nonblocking loads using asynchronous data request: Aprovechar enfoques basados en AJAX, para mejorar comunicación o agregación de datos.
-Use on-demand loading policy: Cargar datos y componente solo cuando sea requerido.
-Batching: Agrupar solicitudes para minimizar el número de idas al servidor  
-Comprehensive performance-based design and testing: Modelar y probar todos los escenarios.
-Simple, modular, and reusable design: Diseñar los componentes para que puedan reutilizarse y probarse fácilmente.
-Accessibility: La falta de esta puede causar problemas en la experiencia del usuario.
-Omni-channel option: Interfaz y tiempo de carga optimo en cualquier dispositivo.
-Loose coupling: Los components deben de estar sueltos, para mejorar el rendimiento ante cualquier fallo de algún componente.
-Continuous and iterative build and testing: Construir código e implementar las pruebas de rendimiento tan pronto como se pueda.
+*Think caching: Almacenar en caché los datos con un mecanismo efectivo y elaborado.
+*Desing for failure: Evaluar posibilidades de fracaso, para crear un mecanismo de manejo de fallas. Los elementos comunes de fallo pueden ser:
+    *-Fallos de hardware
+    *-Fallos de seguridad
+    *-Desastres naturales
+    *-Aumento repentino de trafico de usuarios
+    *-Fallo de res
+    *-Fallo de operaciones
+*Distributed and parallel computing: Que el programa se pueda distribuir en múltiples nodos de computación. (Ofrece ventaja en rendimiento y escalabilidad)
+*Keep it lightweight: Los componentes y páginas deben mantenerse ligeros, reduciendo tamaño general y minimizando número de viajes. (Componentes asincrónicos: JavaScript y XML)
+*Nonblocking loads using asynchronous data request: Aprovechar enfoques basados en AJAX, para mejorar comunicación o agregación de datos.
+*Use on-demand loading policy: Cargar datos y componente solo cuando sea requerido.
+*Batching: Agrupar solicitudes para minimizar el número de idas al servidor  
+*Comprehensive performance-based design and testing: Modelar y probar todos los escenarios.
+*Simple, modular, and reusable design: Diseñar los componentes para que puedan reutilizarse y probarse fácilmente.
+*Accessibility: La falta de esta puede causar problemas en la experiencia del usuario.
+*Omni-channel option: Interfaz y tiempo de carga optimo en cualquier dispositivo.
+*Loose coupling: Los components deben de estar sueltos, para mejorar el rendimiento ante cualquier fallo de algún componente.
+*Continuous and iterative build and testing: Construir código e implementar las pruebas de rendimiento tan pronto como se pueda.
 
 
-c. Especificación mediante escenarios
+*c. Especificación mediante escenarios*
 -
-Descripción
-Escenario
+*Descripción Escenario*
 
-Fuente de Estimulo: Usuarios con origen interno o externo del sistema.
-Estimulo: Inicio de la transacción con una llegada de un evento, el cual puede ser periódico, esporádico o estocástico.
-Artefacto :El sistema o algún componente, entre ellos está componentes JS y CSS, componentes de imagen y la respuesta del servidor.
-Ambiente: El modelo del funcionamiento puede ser normal, en emergencia, carga máxima y sobrecarga.
-Respuesta: Transacciones con proceso de eventos o cambios en el nivel del servicio.
-Medida de respuesta: Número de transacciones simultaneas, tiempo transcurrido en una solicitud, fecha límite, etc.
+*Fuente de Estimulo: Usuarios con origen interno o externo del sistema.
+*Estimulo: Inicio de la transacción con una llegada de un evento, el cual puede ser periódico, esporádico o estocástico.
+*Artefacto :El sistema o algún componente, entre ellos está componentes JS y CSS, componentes de imagen y la respuesta del servidor.
+*Ambiente: El modelo del funcionamiento puede ser normal, en emergencia, carga máxima y sobrecarga.
+*Respuesta: Transacciones con proceso de eventos o cambios en el nivel del servicio.
+*Medida de respuesta: Número de transacciones simultaneas, tiempo transcurrido en una solicitud, fecha límite, etc.
 
 En la siguiente imagen se puede apreciar el tiempo de carga de los componentes en el momento de ingresar a la página principal.
 
-d. ¿Qué tácticas se pueden emplear?
-Controlar la demanda de recursos
-Administrar la tasa de muestreo
-Limitar la respuesta de un evento
-Priorizar eventos
-Reducir gastos generales
-Tiempo de ejecución limitados
-Aumentar la eficiencia de los recursos
-Administrar los recursos
-Aumentar los recursos
-Introducir concurrencia
-Mantener múltiples copias de computación
-Mantener múltiples copias de datos
-Tamaños de cola enlazados
-Programar los recursos
+*d. ¿Qué tácticas se pueden emplear?*
+*Controlar la demanda de recursos
+*Administrar la tasa de muestreo
+*Limitar la respuesta de un evento
+*Priorizar eventos
+*Reducir gastos generales
+*Tiempo de ejecución limitados
+*Aumentar la eficiencia de los recursos
+*Administrar los recursos
+*Aumentar los recursos
+*Introducir concurrencia
+*Mantener múltiples copias de computación
+*Mantener múltiples copias de datos
+*Tamaños de cola enlazados
+*Programar los recursos
 
-e. ¿Qué herramientas se pueden utilizar para lograrlo?
-JProfiler: Es una herramienta que realiza perfiles de código estático y de tiempo de ejecución, mostrando la memoria total y los recursos consumidos por varios componentes de la aplicación. (IDE: entorno de desarrollo integrado)
-JMeter: Es una herramienta de prueba de carga que puede ser utilizada para analizar y medir el desempeño de los servicios con énfasis en aplicaciones web.
-NGINX: Se utiliza para equilibrar la carga entre los servidores back-end, o para proporcionar almacenamiento en caché para un servidor back-end lento.
+*e. ¿Qué herramientas se pueden utilizar para lograrlo?*
+*JProfiler: Es una herramienta que realiza perfiles de código estático y de tiempo de ejecución, mostrando la memoria total y los recursos consumidos por varios componentes de la aplicación. (IDE: entorno de desarrollo integrado)
+*JMeter: Es una herramienta de prueba de carga que puede ser utilizada para analizar y medir el desempeño de los servicios con énfasis en aplicaciones web.
+*NGINX: Se utiliza para equilibrar la carga entre los servidores back-end, o para proporcionar almacenamiento en caché para un servidor back-end lento.
 
 
 2.Análisis: Mediante escenarios y/o propuesta en marco teorico
 
-Descripción
-Escenario 1
+*Descripción Escenario 1*
 
-• Fuente de Estimulo: Persona
-• Estimulo: Petición para ingresar a la página principal
-• Artefacto: Componente JS y CSS
-• Ambiente: En normal
-• Respuesta: El sistema cargará los componentes de JS y CSS que tiene agrupados en el sistema
-• Medida de respuesta: Tiempo que tarda el sistema en cargar los componentes de JS y CSS
+*• Fuente de Estimulo: Persona
+*• Estimulo: Petición para ingresar a la página principal
+*• Artefacto: Componente JS y CSS
+*• Ambiente: En normal
+*• Respuesta: El sistema cargará los componentes de JS y CSS que tiene agrupados en el sistema
+*• Medida de respuesta: Tiempo que tarda el sistema en cargar los componentes de JS y CSS
 
-Descripción
-Escenario 2
+*Descripción Escenario 2*
 
-• Fuente de Estimulo: Persona
-• Estimulo: Petición para buscar una imagen
-• Artefacto: Respuesta del servidor
-• Ambiente: En normal
-• Respuesta: El sistema buscará en el caché la imagen que el usuario desee
-• Medida de respuesta: Tiempo transcurrido para la solicitud.
+*• Fuente de Estimulo: Persona
+*• Estimulo: Petición para buscar una imagen
+*• Artefacto: Respuesta del servidor
+*• Ambiente: En normal
+*• Respuesta: El sistema buscará en el caché la imagen que el usuario desee
+*• Medida de respuesta: Tiempo transcurrido para la solicitud.
 
 3.Diseño: En Aplicación y en Sistema
-a. Vistas de arquitectura.
+*a. Vistas de arquitectura.*
 
-b. Patrones de arquitectura.
-Computación distribuida y paralela
-diseño ligero
-Almacenamiento en caché
-Invocación de servicios asíncronos
-Carga y carga bajo demanda
-c. Best practices
-Inicialización perezosa del objeto.
-Creación de objetos bajo demanda Aprovechamiento de agrupación de conexiones y agrupación de recursos.
-Llamadas óptimas de recursos.
-Cantidad mínima de transferencia de datos para transacciones ejecutadas frecuentemente.
-Número mínimo de llamadas de recursos.
-d. Tácticas.
-Limitar respuesta de un evento
-Priorizar eventos
-Introducir concurrencia
-Tamaños de cola enlazados
-e. Herramientas.
-JMeter
-NGINX
+*b. Patrones de arquitectura.*
+*Computación distribuida y paralela
+*diseño ligero
+*Almacenamiento en caché
+*Invocación de servicios asíncronos
+*Carga y carga bajo demanda
+
+*c. Best practices*
+*Inicialización perezosa del objeto.
+*Creación de objetos bajo demanda Aprovechamiento de agrupación de conexiones y agrupación de recursos.
+*Llamadas óptimas de recursos.
+*Cantidad mínima de transferencia de datos para transacciones ejecutadas frecuentemente.
+*Número mínimo de llamadas de recursos.
+
+*d. Tácticas.*
+*Limitar respuesta de un evento
+*Priorizar eventos
+*Introducir concurrencia
+*Tamaños de cola enlazados
+
+*e. Herramientas.*
+*JMeter
+*NGINX
