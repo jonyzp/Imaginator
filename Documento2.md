@@ -173,10 +173,15 @@ Disponibilidad de Servicio
 | Throttling | Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. | 
 
 Disponibilidad de Datos:
+* Los servidores de bases de datos deben diseñarse en una configuración agrupada.
+* La configuración del clúster de bases de datos debe admitir las siguientes funciones:
+	- El clúster de bases de datos debe contener nodos de conmutación por error / standby
+	- Sincronización automática de datos en todos los nodos del clúster
+	- Capacidad de agregar más nodos en el servidor para aumentar la capacidad de la base de datos sin ningún impacto en las 		  operaciones de la base de datos
 
 c. Best	Practices.
 
-Disponibilidad de Servicio
+Disponibilidad de Servicio y de datos
 
 Hardware-related best practices
 • proactive	monitoring	and	alerting	infrastructure
@@ -203,8 +208,6 @@ Network	availability
 • Asynchronous services-based integration
 • Stateless	sessions	and	lightweight	component	design
 • Data	replication.
-
-Disponibilidad de Datos:
 
 *d. Tácticas.*
 
