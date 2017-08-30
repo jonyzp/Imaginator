@@ -173,12 +173,12 @@ source: https://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for
 
 como root:
 
-      user1$ sudo yum install mongodb-server -y'
+      user1$ sudo yum install mongodb-server -y
 
 ponerlo a correr:
 
-      user1$ sudo systemctl enable mongod'
-      user1$ sudo systemctl start mongod'
+      user1$ sudo systemctl enable mongod
+      user1$ sudo systemctl start mongod
 
 
 lo instala de los repositorios propios de Centos.
@@ -198,25 +198,18 @@ Abrir el puerto 80
       user1$ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
       user1$ sudo firewall-cmd --reload
 
-## abrir los puertos en el firewall que utilizara la app:
-
-      user1$ firewall-cmd --zone=public --add-port=8084/tcp --permanent
-      user1$ firewall-cmd --reload
-
-## se instala Apache Web Server
-
-      user1$ sudo yum install httpd
 
 ## se instala un manejador de procesos de nodejs, se instala: PM2 (http://pm2.keymetrics.io/)
 
       user1$ npm install -g pm2
-      user1$ cd articulosEM
-      user1$ pm2 start app.ps
-      user1$ pm2 list
-
+      
 ponerlo como un servicio, para cuando baje y suba el sistema:
 
       user1$ sudo pm2 startup systemd
+      user1$ cd ~/Imaginator
+      user1$ pm2 start app.js
+      user1$ pm2 list
+      user1$ pm2 save
 
 ## MUY MUY IMPORTANTE: Deshabilitar SELINUX
 
