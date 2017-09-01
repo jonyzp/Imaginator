@@ -26,9 +26,7 @@ var secureServer = https.createServer({
     ca: fs.readFileSync('./ca.crt'),
     requestCert: true,
     rejectUnauthorized: false
-}, app).listen(config.port, function () {
-  console.log('Express server listening on port ' + config.port);
-});
+}, app);
 
-//app.listen(config.port, function () { console.log('Express server listening on port ' + config.port); });
+secureServer.listen(config.port, function () { console.log('Express server listening on port ' + config.port); });
 
