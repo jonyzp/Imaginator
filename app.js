@@ -1,4 +1,5 @@
-
+var https = require('https'),
+    fs = require('fs');
 var express = require('express'),
   config = require('./config/config'),
   glob = require('glob'),
@@ -19,7 +20,13 @@ var app = express();
 
 module.exports = require('./config/express')(app, config);
 
-app.listen(config.port, function () {
-  console.log('Express server listening on port ' + config.port);
-});
+var secureServer = https.createServer({
+    key: fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.crt'),
+    ca: fs.readFileSync('./ca.crt'),
+    requestCert: true,
+    rejectUnauthorized: false
+}, app);
+
+secureServer.listen(config.port, function () { console.log('Express server listening on port ' + config.port); });
 

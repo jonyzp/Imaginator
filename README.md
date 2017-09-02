@@ -210,8 +210,9 @@ ponerlo como un servicio, para cuando baje y suba el sistema:
 
 Ingresar como root
 
-      user1$ pm2 start app.js
-      user1$ pm2 save
+      user1$ sudo pm2 start app.js
+      user1$ sudo pm2 list
+      user1$ sudo pm2 save
 
 Para mirar el status:
 
