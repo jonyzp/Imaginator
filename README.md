@@ -8,7 +8,7 @@ By:
 
 * Jonathan Zapata - jzapat80@eafit.edu.co
 
-* Pablo Quijano - @eafit.edu.co
+* Pablo Quijano - pquijano@eafit.edu.co
 
 # Descripción de aplicación
 
