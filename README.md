@@ -207,9 +207,20 @@ ponerlo como un servicio, para cuando baje y suba el sistema:
 
       user1$ sudo pm2 startup systemd
       user1$ cd ~/Imaginator
-      user1$ pm2 start app.js
+
+Ingresar como root
+
+      user1$ sudo pm2 start app.js
+      user1$ sudo pm2 list
+      user1$ sudo pm2 save
+
+Para mirar el status:
+
       user1$ pm2 list
-      user1$ pm2 save
+
+I encountered a problem.
+Our servers have two root account(root and user1), we use user1 account for everyday use, when we do "pm2 save", the USER is root, but PM2_HOME is /home/user1/.pm2, after reboot, processes not run automaticly, we receive a error message: [PM2] No processes saved; DUMP file doesn't exist.
+For fix the problem, you must login exactly with "root" user, start you app with pm2, do pm2 save and make pm2-init.sh as service
 
 ## MUY MUY IMPORTANTE: Deshabilitar SELINUX
 
