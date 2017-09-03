@@ -407,14 +407,17 @@ Este rendimiento es considerado un requisito crítico y no funcional impactando 
 
 *c. Especificación mediante escenarios*
 
-- Descripción Escenario
 
-- Fuente de Estimulo: Usuarios con origen interno o externo del sistema.
-- Estimulo: Inicio de la transacción con una llegada de un evento, el cual puede ser periódico, esporádico o estocástico.
-- Artefacto :El sistema o algún componente, entre ellos está componentes JS y CSS, componentes de imagen y la respuesta del servidor.
-- Ambiente: El modelo del funcionamiento puede ser normal, en emergencia, carga máxima y sobrecarga.
-- Respuesta: Transacciones con proceso de eventos o cambios en el nivel del servicio.
-- Medida de respuesta: Número de transacciones simultaneas, tiempo transcurrido en una solicitud, fecha límite, etc.
+| - | Descripción Escenario |
+| :--: | :---: |
+| **Escenario ** |  |
+| • Fuente de Estimulo | Usuarios con origen interno o externo del sistema. |
+| • Estimulo | Inicio de la transacción con una llegada de un evento, el cual puede ser periódico, esporádico o estocástico. |
+| • Artefacto | El sistema o algún componente, entre ellos está componentes JS y CSS, componentes de imagen y la respuesta del servidor. |
+| • Ambiente | El modelo del funcionamiento puede ser normal, en emergencia, carga máxima y sobrecarga. |
+| • Respuesta | Transacciones con proceso de eventos o cambios en el nivel del servicio. |
+| • Medida de respuesta | Número de transacciones simultaneas, tiempo transcurrido en una solicitud, fecha límite, etc. |
+
 
 En la siguiente imagen se puede apreciar el tiempo de carga de los componentes en el momento de ingresar a la página principal.
 
@@ -440,27 +443,35 @@ En la siguiente imagen se puede apreciar el tiempo de carga de los componentes e
 - NGINX: Se utiliza para equilibrar la carga entre los servidores back-end, o para proporcionar almacenamiento en caché para un servidor back-end lento.
 
 
-2.Análisis: Mediante escenarios y/o propuesta en marco teorico
+## 2. Análisis: Mediante escenarios y/o propuesta en marco teorico
 
 *Descripción Escenario 1*
 
-- • Fuente de Estimulo: Persona
-- • Estimulo: Petición para ingresar a la página principal
-- • Artefacto: Componente JS y CSS
-- • Ambiente: En normal
-- • Respuesta: El sistema cargará los componentes de JS y CSS que tiene agrupados en el sistema
-- • Medida de respuesta: Tiempo que tarda el sistema en cargar los componentes de JS y CSS
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 1** |  |
+| • Fuente de Estimulo | Persona |
+| • Estimulo | Petición para ingresar a la página principal |
+| • Artefacto | Componente JS y CSS |
+| • Ambiente | En normal |
+| • Respuesta | El sistema cargará los componentes de JS y CSS que tiene agrupados en el sistema |
+| • Medida de respuesta | Tiempo que tarda el sistema en cargar los componentes de JS y CSS |
 
 *Descripción Escenario 2*
 
-- • Fuente de Estimulo: Persona
-- • Estimulo: Petición para buscar una imagen
-- • Artefacto: Respuesta del servidor
-- • Ambiente: En normal
-- • Respuesta: El sistema buscará en el caché la imagen que el usuario desee
-- • Medida de respuesta: Tiempo transcurrido para la solicitud.
+| - | Descripción |
+| :--: | :---: |
+| **Escenario 2** |  |
+| • Fuente de Estimulo | Persona  |
+| • Estimulo | Petición para buscar una imagen |
+| • Artefacto | Respuesta del servidor |
+| • Ambiente | En normal |
+| • Respuesta | El sistema buscará en el caché la imagen que el usuario desee |
+| • Medida de respuesta | Tiempo transcurrido para la solicitud |
 
-3.Diseño: En Aplicación y en Sistema
+
+
+## 3. Diseño: En Aplicación y en Sistema
 *a. Vistas de arquitectura.*
 
 *b. Patrones de arquitectura.*
