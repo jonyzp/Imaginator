@@ -1,13 +1,13 @@
 # NodeJS Imaginator
 
-By: 
+By:
 
 * Mauricio Hoyos Ardila - mhoyosa2@eafit.edu.co - Creador del Api RESTful
-    
-* Mayerli López - @eafit.edu.co
-    
+
+* Mayerli López - mlopez12@eafit.edu.co
+
 * Jonathan Zapata - jzapat80@eafit.edu.co
-    
+
 * Pablo Quijano - @eafit.edu.co
 
 # Descripción de aplicación
@@ -202,7 +202,7 @@ Abrir el puerto 80
 ## se instala un manejador de procesos de nodejs, se instala: PM2 (http://pm2.keymetrics.io/)
 
       user1$ npm install -g pm2
-      
+
 ponerlo como un servicio, para cuando baje y suba el sistema:
 
       user1$ sudo pm2 startup systemd
