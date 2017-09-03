@@ -21,9 +21,9 @@ var app = express();
 module.exports = require('./config/express')(app, config);
 
 var secureServer = https.createServer({
-    key: fs.readFileSync('./server.key'),
-    cert: fs.readFileSync('./server.crt'),
-    ca: fs.readFileSync('./ca.crt'),
+    key: fs.readFileSync('./ssl/server.key'),
+    cert: fs.readFileSync('./ssl/server.crt'),
+    ca: fs.readFileSync('./ssl/ca.crt'),
     requestCert: true,
     rejectUnauthorized: false
 }, app);
