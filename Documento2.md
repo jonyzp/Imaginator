@@ -99,7 +99,7 @@ Preparación y reparación:
 | - | Descripción |
 | :--: | :---: |
 | **Escenario 1** |  |
-| Fuente de Estimulo | La petición de un Usuario con datos corruptos |
+| Fuente de Estimulo | Se corta el suministro de energía |
 | Estimulo | Se cae el Servidor |
 | Artefacto | App |
 | Ambiente | En normal
@@ -110,7 +110,7 @@ Preparación y reparación:
 | Estimulo | Server crash |
 | Artefacto | App |
 | Ambiente | En normal
-| Respuesta | Primero	el fallo debe ser detectado,	luego	recuperarse..
+| Respuesta | Se debe notificar al usuario y volver a lanzar la aplicación en un tiempo menor al descrito en las especificaciones de downtime permitido
 | Medida de respuesta | 5 segundos para detectar el fallo, 5 para corregirlo
 | **Otros Escenarios *** |
 | Bring down the primary node of the application server cluster |● Check session failover ● Check cache replication ● Check session replication |
