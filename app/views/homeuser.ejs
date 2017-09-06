@@ -28,8 +28,11 @@
         var title = document.createElement("h2");
         var data = document.createElement("h4");
         var share = document.createElement("button");
+        var openimage = document.createElement("button");
         share.id = images[i]._id;
         share.textContent = "Share";
+        openimage.id = images[i]._id;
+        openimage.textContent = "Open in New tab";
         share.addEventListener("click", function ir() {
           var user = prompt("Enter the user name: ", "UserName");
           $.ajax({
@@ -49,7 +52,16 @@
             }
           });
         }, false);
+
+        openimage.addEventListener("click", function () {
+          //console.log(this.id);
+          url = "<%=baseurl%>Image/see?image_id=" + this.id;
+          //window.location.href = url;
+          window.open(url);
+        }, false);
+
         divshare.appendChild(share);
+        divshare.appendChild(openimage);
         title.textContent = images[i].title;
         data.textContent = "format: "+images[i].format+" date: "+images[i].capture_date;
         div.appendChild(title);

@@ -9,8 +9,8 @@ var express = require('express'),
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
   mongoose.Promise = global.Promise;
-User = require('./../models/user');
 
+  User = require('./../models/user');
 module.exports = function (app) {
   app.use('/User', router);
 };
