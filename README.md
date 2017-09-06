@@ -237,3 +237,109 @@ La aplicación fue desplegada en la siguiente url: https://quiet-bayou-17563.her
 Para su despliegue se siguieron los pasos para NodeJS que se indican en su pagina oficial: https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction
 
 Se debe de tener en cuenta que al trabajar con la base de datos MongoDB (la cual Heroku no soporta), se debe de crear una nueva base de datos virtual, esto se puede hacer en la siguiente pagina: https://mlab.com/.
+
+# Configuracion del Load Balancer con Haproxy
+
+> https://www.upcloud.com/support/haproxy-load-balancer-centos/#installing-haproxy
+
+# 6. Configuración de DCA público 
+
+Hola a todos,
+
+en el documento adjunto, encontrará cada grupo, su nombre de dominio y la dir IP.
+
+todos tienen acceso a la maquina 200.12.180.86, user1/eafit.2016
+
+son sudos alli.
+
+esta maquina es para colocar un balanceador haproxy, con puerto HTTP y HTTPS.
+
+con HTTPS, se debe solicitar a letsencrypt.
+
+hay 2 alternativas para como involucrar este HAPROXY_PUBLICO
+
+opcion1:
+
+BROWSER <-> internet <-> HAPROXY_PUBLICO <-> HAPROXY_PRIVADO <-> APPSERVERS1(2, 3, ...)
+
+opción2:
+
+BROWSER <-> internet <-> HAPROXY_PUBLICO <-> APPSERVERS1(2, 3, ...)
+
+Recomiendo la opción 1, porque da la independencia de que cada equipo trabaje en su HAPROXY_PRIVADO y se pegue al Público.
+
+recuerden, los que están rabajando en seguridad, que deben solicitar un certificado válido en Let’s Encrypt para el HAPROXY_PUBLICO, y que el github les deje tips para como solicitarlo.
+
+Otra cosa,
+
+cuando adicione su entrada en el haproxy de su dominio, verifique que no dañe el de otro equipo, como?
+
+$ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg-backup1 (2, 3. .....)
+
+$ sudo vim /etc/haproxy/haproxy.cfg
+
+(adicione alli su entrada, haga los cambios)
+
+$ sudo systemctl restart haproxy
+
+si falla, restaure la copia que hizo de backup, o arreglelo si sabe que hizo,y reinicie:
+
+$ sudo systemctl restart haproxy
+
+si no fallo, todo OK.
+
+* Otra cosa
+ya esta, en la ip publica: 200.12.180.86, con el dominio st0263.dis.eafit.edu.co, ya funcionando en http y https, tanto con proxy inverso, como con balanceador.
+
+funciona con un certificado válido CA de lets encrypt. alli tengo la app de file_upload de ejemplo.
+
+por otro lado, las instrucciones están actualizadas en el github:
+
+https://github.com/edwinm67/st0263eafit.git
+
+
+Nginx http config in /etc/nginx/conf.d/default.conf
+
+ location /imagine/ {
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header HOST $http_host;
+   proxy_set_header X-NginX-Proxy true;
+   proxy_pass http://127.0.0.1:4000;
+   proxy_redirect off;
+  }
+
+location /MusicApp/ {
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header HOST $http_host;
+ proxy_set_header X-NginX-Proxy true;
+ proxy_pass http://127.0.0.1:3000/;
+ proxy_redirect off;
+}
+
+Nginx https:
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+#root         /usr/share/nginx/html;
+
+        server_name 10.131.137.153;
+        return 301 https://10.131.137.153;
+}
+
+server{
+
+        listen 443 ssl http2 default_server;
+        listen [::]:443 ssl http2 default_server;
+        include snippets/self-signed.conf;
+        include snippets/ssl-params.conf;
+
+    location / {
+        root  /var/www/Imaginator;
+        index home.ejs ;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header HOST $http_host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_pass https://127.0.0.1:8084;
+        proxy_redirect off;
+      }
+}

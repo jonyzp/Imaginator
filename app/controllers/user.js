@@ -7,7 +7,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   User = mongoose.model('User');
   mongoose.Promise = global.Promise;
-//User = require('./../models/user');
+  User = require('./../models/user');
 module.exports = function (app) {
   app.use('/User', router);
 };
