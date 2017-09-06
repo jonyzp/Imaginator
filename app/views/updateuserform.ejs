@@ -12,13 +12,14 @@
   <link rel="stylesheet" href="/css/createform.css">
   <script>
     $(document).ready(function(){
+       document.getElementById("user_name").textContent = sessionStorage.user;
       $("#logout").click(function(){
         $.post("User/logout").then(window.location.href = "<%=baseurl%>");
       });
       $("#update").click(function () {
         var user = $("#user_name").val(), current_pass = $("#current_password").val(), pass = $("#password").val(), pasconf = $("#password_confirm").val();
         $.ajax({
-          url: 'User/?user_id='+"<%=id%>",
+          url: 'User/?user_id='+ sessionStorage.id,
           type: 'PUT',
           dataType: 'json',
           data: {user_name:user,current:current_pass,password:pass, password_confirm:pasconf},
@@ -108,7 +109,7 @@
         </div>
         <div class="form-group row">
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="user_name"  value="<%=username%>" placeholder="Username">
+            <input type="text" class="form-control" id="user_name" placeholder="Username">
           </div>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="current_password" placeholder="Current Password">

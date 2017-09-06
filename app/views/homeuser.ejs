@@ -10,7 +10,9 @@
     <meta charset="UTF-8">
     <title>imaginator</title>
     <link rel="stylesheet" href="/css/home.css">
+
   <script>
+
     function poner(images) {
       var lista = document.getElementById("images");
       while (lista.hasChildNodes()) {
@@ -58,12 +60,16 @@
     }
   </script>
   <script>
+
     $(document).ready(function(){
       $.post("Image/public_images",function (images) {
-
           poner(images);
-
-     })
+     });
+      $.post("User/",{email:sessionStorage.email, user: sessionStorage.user,id:sessionStorage.id}, function(data) {
+          if(data){
+              alert("welcome");
+          }
+      });
 
       $("#logout").click(function(){
         $.post("User/logout").then(window.location.href = "<%=baseurl%>");

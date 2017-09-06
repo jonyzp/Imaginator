@@ -28,6 +28,7 @@ router.get('/',function (req, res, next) {
 });
 
 router.post('/', upload.any(), function (req, res, next) {
+  console.log(req.body);
   var image = new Image({
     title: req.body.title,
     format: req.body.format,
@@ -35,9 +36,9 @@ router.post('/', upload.any(), function (req, res, next) {
     height: req.body.height,
     capture_date: req.body.capdate,
     quality: req.body.quality,
-    user_id : mongoose.Types.ObjectId(req.session.user_id),
-    visibility: req.body.visibility,
-    img:{data: fs.readFileSync(req.files[0].path), contentType: req.files[0].mimetype}
+    user_id : req.body.user_id,
+    visibility: req.body.visibility
+    //img:{data: fs.readFileSync(req.files[0].path), contentType: req.files[0].mimetype}
 
   });
   image.save(function (err) {
@@ -46,7 +47,7 @@ router.post('/', upload.any(), function (req, res, next) {
       res.redirect(config.baseUrl+'home');
     } else {
       //TODO: return page with errors
-      res.end("0");
+      res.end(err);
     }
   });
 });
@@ -86,8 +87,7 @@ router.delete('/',function (req, res, next) {
 });
 
 router.post('/user_images',function (req, res, next) {
-  id = mongoose.Types.ObjectId(req.query.user_id);
-  Image.find({user_id:id},function (err, docs) {
+  Image.find({user_id:req.query.user_id},function (err, docs) {
     if (err){ res.send(err);}
     else{ res.send(docs);}
   });
@@ -102,7 +102,7 @@ router.post('/public_images',function (req, res, next) {
 });
 
 router.post('/shared_with_me',function (req, res, next) {
-  Image.find({"shared_with.user":req.query.user_id},function (err, docs) {
+  Image.find({"shared_with.username":req.query.user},function (err, docs) {
     if (err){ res.send(err);}
     else{ res.send(docs);}
   });

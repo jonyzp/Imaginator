@@ -59,7 +59,7 @@
   </script>
   <script>
     $(document).ready(function(){
-      $.post("Image/shared_with_me?user_id="+"<%=id%>",function (images) {
+      $.post("Image/shared_with_me?user="+sessionStorage.user,function (images) {
           poner(images);
      });
 

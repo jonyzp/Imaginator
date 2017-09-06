@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+-->
 <head>
     <meta charset="UTF-8">
     <title>imaginator</title>
@@ -31,10 +31,12 @@
     }
   </script>
   <script>
-    $(document).ready(function(){
+      (document).ready(function(){
       $.post("Image/public_images",function (images) {
           poner(images);
       });
+
+
       $("#login").click(function(){
         email = $("#email").val();
         pass = $("#password").val();
@@ -57,6 +59,75 @@
       });
     });
   </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+      var startApp = function() {
+          gapi.load('auth2', function(){
+              // Retrieve the singleton for the GoogleAuth library and set up the client.
+              auth2 = gapi.auth2.init({
+                  client_id: '43890780869-7tc59qqvth3rm02r02t4a7q79l0ld5q5.apps.googleusercontent.com',
+                  cookiepolicy: 'single_host_origin',
+                  // Request scopes in addition to 'profile' and 'email'
+                  //scope: 'additional_scope'
+              });
+              attachSignin(document.getElementById('customBtn'));
+          });
+      };
+
+      function attachSignin(element) {
+          auth2.attachClickHandler(element, {},
+              function(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                  sessionStorage.setItem("user", profile.getName());
+                  sessionStorage.setItem("id",profile.getId());
+                  sessionStorage.setItem("email", profile.getEmail());
+                  sessionStorage.setItem("image", profile.getImageUrl());
+                  window.location.href = "<%=baseurl%>home";
+
+              }, function(error) {
+                  alert(JSON.stringify(error, undefined, 2));
+              });
+      }
+  </script>
+  <style type="text/css">
+    #customBtn {
+      display: inline-block;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.icon {
+      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -120,6 +191,20 @@
           <li>
             <button type="button" id="sing_up" class="btn btn-primary">Sing Up</button>
           </li>
+
+          <!-- In the callback, you would hide the gSignInWrapper element on a
+  successful sign in -->
+          <div id="gSignInWrapper">
+            <span class="label">Sign in with:</span>
+            <div id="customBtn" class="customGPlusSignIn">
+              <span class="icon"></span>
+              <span class="buttonText">Google</span>
+            </div>
+          </div>
+          <script>startApp();</script>
+
+          </li>
+
         </ul>
       </div>
     </div>

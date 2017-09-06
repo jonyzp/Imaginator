@@ -6,12 +6,22 @@ var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
   User = mongoose.model('User');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
   mongoose.Promise = global.Promise;
-//User = require('./../models/user');
+User = require('./../models/user');
+
 module.exports = function (app) {
   app.use('/User', router);
 };
+
+
 router.post('/login', function (req, res, next) {
+
+
+    res.redirect('/home');
+
+  /*
   User.findOne({email:req.body.email},function (err, doc) {
     if (err){
       return next(err);
@@ -30,24 +40,23 @@ router.post('/login', function (req, res, next) {
     }
     else {res.end("0")}
   });
+  */
 });
 
 router.post('/',function(req,res){
-  var hash = bcrypt.hashSync(req.body.password, salt);
   var user = new User({
     email:req.body.email,
     user:req.body.user,
-    password: hash
+    id:req.body.id
   });
 
   user.save(function (err) {
     if (!err) {
       //return console.log("created");
-      res.end("1");
-    } else {
-      //TODO: return page with errors
-      //return console.log(err);
-      res.end("0");
+        res.end("1");
+    }
+    else{
+      console.log(err);
     }
   });
 
@@ -87,8 +96,8 @@ router.put('/',function (req, res, next) {
 });
 
 router.delete('/',function (req, res, next) {
-  id = mongoose.Types.ObjectId(req.query.user_id);
-  User.findById(id,function (err, user) {
+
+  User.find({id:req.body.id},function (err, user) {
     if (req.body.password == undefined){res.end("0");    }
     else{
       if (bcrypt.compareSync(req.body.password,user.password)){

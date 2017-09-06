@@ -14,6 +14,13 @@
   background-color: #5bc0de;
 }
 
+.hideme
+{
+  display:none;
+  visibility:hidden;
+}
+.showme
+
 .prj-name{
   font-weight:bold;
   color:#5bc0de;

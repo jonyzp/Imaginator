@@ -67,7 +67,7 @@
   </script>
   <script>
     $(document).ready(function(){
-      $.post("Image/user_images?user_id=<%=id%>",function (images) {
+      $.post("Image/user_images?user_id="+sessionStorage.id,function (images) {
           poner(images);
      });
 

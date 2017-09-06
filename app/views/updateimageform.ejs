@@ -32,7 +32,7 @@
           height = $("#height").val();
 
         $.ajax({
-          url: '?image_id='+"<%=id%>",
+          url: '?image_id='+'<%=id%>',
           type: 'PUT',
           dataType: 'json',
           data: {title:title, format:format, width:width, height:height, visibility:visibility},

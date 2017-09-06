@@ -8,7 +8,7 @@ var ImageSchema = new Schema({
   height: Number,
   capture_date: Date,
   quality: Number,
-  user_id: Schema.ObjectId,
+  user_id: String,
   visibility: String,
   shared_with:[{
     username:String,
