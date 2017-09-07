@@ -18,17 +18,13 @@ module.exports = function (app) {
 
 router.post('/login', function (req, res, next) {
 
-
-    res.redirect('/home');
-
-  /*
-  User.findOne({email:req.body.email},function (err, doc) {
+  User.find({email:req.body.email},function (err, doc) {
     if (err){
       return next(err);
     }
     if (doc != null){
 
-      if ( bcrypt.compareSync(req.body.password,doc.password) ) {
+      if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
         req.session.user =doc.user;
         req.session.email = doc.email;
         req.session.user_id = doc._id;
@@ -40,25 +36,50 @@ router.post('/login', function (req, res, next) {
     }
     else {res.end("0")}
   });
-  */
 });
 
 router.post('/',function(req,res){
-  var user = new User({
-    email:req.body.email,
-    user:req.body.user,
-    id:req.body.id
-  });
+    var user = new User({});
+  if (req.body.id != null){
+       user = new User({
+          email:req.body.email,
+          user:req.body.user,
+          id:req.body.id
+      });
+      user.save(function (err) {
+          if (!err) {
+              //return console.log("created");
+              res.end("1");
+          }
+          else{
+              console.log(err);
+              res.end("0");
+          }
+      });
+  }
+  else{
+    if (req.body.email != null){
+        var hash = bcrypt.hashSync(req.body.password, salt);
+        user = new User({
+            email:req.body.email,
+            user:req.body.user,
+            password:hash
+        });
+        user.save(function (err) {
+            if (!err) {
+                //return console.log("created");
+                res.end("1");
+            }
+            else{
+                console.log(err);
+                res.end("0");
+            }
+        });
+    }
+  }
 
-  user.save(function (err) {
-    if (!err) {
-      //return console.log("created");
-        res.end("1");
-    }
-    else{
-      console.log(err);
-    }
-  });
+
+
 
 });
 

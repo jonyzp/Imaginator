@@ -13,6 +13,6 @@ var ImageSchema = new Schema({
   shared_with:[{
     username:String,
     user:String}],
-  img: { data: Buffer, contentType: String }
+  img: { location: String, contentType: String }
 });
 module.exports = mongoose.model('Image', ImageSchema);

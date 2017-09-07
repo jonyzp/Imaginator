@@ -30,7 +30,7 @@
         var share = document.createElement("button");
         var openimage = document.createElement("button");
         share.id = images[i]._id;
-        share.textContent = "Share";
+          share.textContent = "Share";
         openimage.id = images[i]._id;
         openimage.textContent = "Open in New tab";
         share.addEventListener("click", function ir() {
@@ -79,7 +79,7 @@
      });
       $.post("User/",{email:sessionStorage.email, user: sessionStorage.user,id:sessionStorage.id}, function(data) {
           if(data){
-              alert("welcome");
+              //alert("welcome");
           }
       });
 

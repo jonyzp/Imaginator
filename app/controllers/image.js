@@ -3,10 +3,35 @@ var express = require('express'),
   config = require('../../config/config'),
   mongoose = require('mongoose'),
   multer  = require('multer'),
-  upload = multer({ dest: 'public/uploads/' }),
   User = mongoose.model('User'),
   fs = require('fs'),
+  direccion = "",
+  dataType = "",
+  imagename="",
+  variante=1;
   Image = mongoose.model('Image');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      if (variante==1){
+          cb(null, 'public/uploads/');
+          direccion = 'public/uploads/';
+          dataType = file.mimetype;
+      }
+      else {
+          cb(null, 'public/uploads2/');
+          direccion = 'public/uploads2/';
+          dataType = file.mimetype;
+      }
+    },
+    filename: function (req, file, cb) {
+      imagename = Date.now()+ '-' + file.originalname;
+      cb(null, imagename);
+
+    }
+});
+var upload = multer({ storage: storage });
+
 
 module.exports = function (app) {
   app.use('/Image', router);
@@ -15,8 +40,8 @@ router.get('/see', function (req, res, next) {
   id = mongoose.Types.ObjectId(req.query.image_id);
   Image.findById(id, function (err, doc) {
     if (err) return next(err);
-    res.contentType(doc.img.contentType);
-    res.send(doc.img.data);
+      res.contentType(doc.img.contentType);
+      res.send(fs.readFileSync(doc.img.location));
   });
 });
 router.get('/',function (req, res, next) {
@@ -27,8 +52,14 @@ router.get('/',function (req, res, next) {
   });
 });
 
-router.post('/', upload.any(), function (req, res, next) {
-  console.log(req.body);
+router.post('/', upload.single('image'), function (req, res, next) {
+  if(variante==1){
+    variante=0;
+  }
+  else{
+    variante=1;
+  }
+  console.log("location: "+direccion+"-------- contentype: "+dataType);
   var image = new Image({
     title: req.body.title,
     format: req.body.format,
@@ -36,9 +67,9 @@ router.post('/', upload.any(), function (req, res, next) {
     height: req.body.height,
     capture_date: req.body.capdate,
     quality: req.body.quality,
+    img: {location:direccion + imagename, contentType:dataType},
     user_id : req.body.user_id,
     visibility: req.body.visibility
-    //img:{data: fs.readFileSync(req.files[0].path), contentType: req.files[0].mimetype}
 
   });
   image.save(function (err) {
