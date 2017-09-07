@@ -50,6 +50,24 @@ En disponibilidad de servicio ningún cambio
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a alguno de los dos sevidores que están en la .240 y en la .153
 
+       |
+-------+-----------------------------------------------
+       |
+       |
+       |10.131.137.215  
+ +-----+-----+     
+ | Frontend  |     
+ |  HAProxy  |     
+ +------+----+     
+        |
+        +--------------------+
+        |10.131.137.240      |10.131.137.153
++-------+------+     +-------+------+
+|   Backend#1  |     |   Backend#2  |
+|  Web Server  |     |  Web Server  |
++--------------+     +--------------+
+
+
 **Rendimiento**
 
 a. Implementación

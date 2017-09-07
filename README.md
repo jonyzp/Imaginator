@@ -58,105 +58,105 @@ $ yo express
 
 image:
 {
-      title: String,
-      format: String,
-      width: Number,
-      height: Number,
-      capture_date: Date,
-      quality: Number,
-      user_id: Schema.ObjectId,
-      visibility: String,
-      shared_with:[{
-        username:String,
-        user:String
-        }]
+			title: String,
+			format: String,
+			width: Number,
+			height: Number,
+			capture_date: Date,
+			quality: Number,
+			user_id: Schema.ObjectId,
+			visibility: String,
+			shared_with:[{
+				username:String,
+				user:String
+				}]
 }
 
 user:
 {
-       email: {type: String, unique: true, required: true},
-       user: {type: String, unique: true, required: true},
-       password:{type: String, unique: true, required: true}
+			 email: {type: String, unique: true, required: true},
+			 user: {type: String, unique: true, required: true},
+			 password:{type: String, unique: true, required: true}
 }
 
 ## 3.2 Servicios Web
 
 /* Servicio Web: Realiza la búsqueda de un artículo por su Id.
-  Método: GET
-  URI: /Image/?image_id=val
+	Método: GET
+	URI: /Image/?image_id=val
 */
 
 /* Servicio Web: Inserta un registro de imagen en la Base de datos, envía al res "1" si fue guardada satisfactoriamente
-  Método: POST
-  URI: /Image/
-  Body: title, format, width, height, capdate (capture data), quality, user_id, visibility ("public" o "private").
+	Método: POST
+	URI: /Image/
+	Body: title, format, width, height, capdate (capture data), quality, user_id, visibility ("public" o "private").
 */
 
 /* Servicio Web: Actualiza los datos de una imagen en la Base de datos, envía al res "1" si fue actualizada satisfactoriamente
-  Método: PUT
-  URI: /Image/?image_id=val
-  Body: title, format, width, height, visibility.
+	Método: PUT
+	URI: /Image/?image_id=val
+	Body: title, format, width, height, visibility.
 */
 
 /* Servicio Web: Elimina una imagen en la Base de datos, envía al res "1" si fue eliminada satisfactoriamente
-  Método: DELETE
-  URI: /Image/?image_id=val
+	Método: DELETE
+	URI: /Image/?image_id=val
 */
 
 /* Servicio Web: Busca y envía todas las imágenes ingresadas por un usuario en la Base de datos
-  Método: POST
-  URI: /Image/user_images?user_id=val
+	Método: POST
+	URI: /Image/user_images?user_id=val
 */
 
 /* Servicio Web: Busca y envía todas las imágenes con visibilidad "public" en la Base de datos
-  Método: POST
-  URI: /Image/public_images
+	Método: POST
+	URI: /Image/public_images
 */
 
 /* Servicio Web: Busca y envía todas las imágenes que se han compartido a un usuario
-  Método: POST
-  URI: /Image/shared_with_me?user_id=val
+	Método: POST
+	URI: /Image/shared_with_me?user_id=val
 */
 
 /* Servicio Web:  Realiza la búsqueda en la base de datos, por campo título y de visibilidad publica
-  Método: POST
-  URI: /Image/search
-  Body: search
+	Método: POST
+	URI: /Image/search
+	Body: search
 */
 
 /* Servicio Web: Agrega un usuario a la lista de compartidos de una imagen, envía al res "1" si fue eliminada satisfactoriamente
-  Método: POST
-  URI: /Image/share?username=val
-  Body: image_id
+	Método: POST
+	URI: /Image/share?username=val
+	Body: image_id
 */
 
 /* Servicio Web: Realiza el log in de cada usuario y almacena sus datos en la sesión del solicitante
-  Método: POST
-  URI: /User/login
-  Body: email, password
+	Método: POST
+	URI: /User/login
+	Body: email, password
 */
 
 /* Servicio Web: Agrega un usuario a la base de datos, envía al res "1" si fue guardado satisfactoriamente
-  Método: POST
-  URI: /User/
-  Body: email, password, user
+	Método: POST
+	URI: /User/
+	Body: email, password, user
 */
 
 /* Servicio Web: Realiza el log out de cada usuario y destruye la sesión del solicitante
-  Método: POST
-  URI: /User/logout
+	Método: POST
+	URI: /User/logout
 */
 
 /* Servicio Web: Actualiza los datos de un usuario en la Base de datos, envía al res "1" si fue actualizada, "2" si la contraseña actual no coincide y "3" si la nueva contraseña y la de confirmación no coinciden
-  Método: PUT
-  URI: /User/?user_id=val
-  Body: current, password, password_confirm, user_name
+	Método: PUT
+	URI: /User/?user_id=val
+	Body: current, password, password_confirm, user_name
 */
 
 /* Servicio Web: Elimina un usuario en la Base de datos, envía al res "1" si fue eliminada satisfactoriamente
-  Método: DELETE
-  URI: /User/?user_id=val
-  Body: password
+	Método: DELETE
+	URI: /User/?user_id=val
+	Body: password
 */
 
 
@@ -167,18 +167,18 @@ user:
 
 source: https://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for-node-js-on-centos-7/
 
-      user1$ nvm install v7.7.1
+			user1$ nvm install v7.7.1
 
 ## se instala el servidor mongodb
 
 como root:
 
-      user1$ sudo yum install mongodb-server -y
+			user1$ sudo yum install mongodb-server -y
 
 ponerlo a correr:
 
-      user1$ sudo systemctl enable mongod
-      user1$ sudo systemctl start mongod
+			user1$ sudo systemctl enable mongod
+			user1$ sudo systemctl start mongod
 
 
 lo instala de los repositorios propios de Centos.
@@ -189,34 +189,34 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
 
 ## se instala NGINX
 
-      user1$ sudo yum install nginx
-      user1$ sudo systemctl enable nginx
-      user1$ sudo systemctl start nginx
+			user1$ sudo yum install nginx
+			user1$ sudo systemctl enable nginx
+			user1$ sudo systemctl start nginx
 
 Abrir el puerto 80
 
-      user1$ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
-      user1$ sudo firewall-cmd --reload
+			user1$ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
+			user1$ sudo firewall-cmd --reload
 
 
 ## se instala un manejador de procesos de nodejs, se instala: PM2 (http://pm2.keymetrics.io/)
 
-      user1$ npm install -g pm2
+			user1$ npm install -g pm2
 
 ponerlo como un servicio, para cuando baje y suba el sistema:
 
-      user1$ sudo pm2 startup systemd
-      user1$ cd ~/Imaginator
+			user1$ sudo pm2 startup systemd
+			user1$ cd ~/Imaginator
 
 Ingresar como root
 
-      user1$ sudo pm2 start app.js
-      user1$ sudo pm2 list
-      user1$ sudo pm2 save
+			user1$ sudo pm2 start app.js
+			user1$ sudo pm2 list
+			user1$ sudo pm2 save
 
 Para mirar el status:
 
-      user1$ pm2 list
+			user1$ pm2 list
 
 I encountered a problem.
 Our servers have two root account(root and user1), we use user1 account for everyday use, when we do "pm2 save", the USER is root, but PM2_HOME is /home/user1/.pm2, after reboot, processes not run automaticly, we receive a error message: [PM2] No processes saved; DUMP file doesn't exist.
@@ -224,11 +224,11 @@ For fix the problem, you must login exactly with "root" user, start you app with
 
 ## MUY MUY IMPORTANTE: Deshabilitar SELINUX
 
-          user1$ sudo vim /etc/sysconfig/selinux
+					user1$ sudo vim /etc/sysconfig/selinux
 
-                SELINUX=disabled
+								SELINUX=disabled
 
-          user1$ sudo reboot
+					user1$ sudo reboot
 
 # 5. Despliege en Heroku:
 
@@ -241,6 +241,11 @@ Se debe de tener en cuenta que al trabajar con la base de datos MongoDB (la cual
 # Configuracion del Load Balancer con Haproxy
 
 > https://www.upcloud.com/support/haproxy-load-balancer-centos/#installing-haproxy
+
+Start HAProxy service using following command, also configure it to auto start on system boot.
+
+	sudo service haproxy start
+	sudo chkconfig haproxy on
 
 # 6. Configuración de DCA público 
 
@@ -301,12 +306,12 @@ https://github.com/edwinm67/st0263eafit.git
 Nginx http config in /etc/nginx/conf.d/default.conf
 
  location /imagine/ {
-   proxy_set_header X-Real-IP $remote_addr;
-   proxy_set_header HOST $http_host;
-   proxy_set_header X-NginX-Proxy true;
-   proxy_pass http://127.0.0.1:4000;
-   proxy_redirect off;
-  }
+	 proxy_set_header X-Real-IP $remote_addr;
+	 proxy_set_header HOST $http_host;
+	 proxy_set_header X-NginX-Proxy true;
+	 proxy_pass http://127.0.0.1:4000;
+	 proxy_redirect off;
+	}
 
 location /MusicApp/ {
  proxy_set_header X-Real-IP $remote_addr;
@@ -318,28 +323,28 @@ location /MusicApp/ {
 
 Nginx https:
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
+				listen 80 default_server;
+				listen [::]:80 default_server ipv6only=on;
 #root         /usr/share/nginx/html;
 
-        server_name 10.131.137.153;
-        return 301 https://10.131.137.153;
+				server_name 10.131.137.153;
+				return 301 https://10.131.137.153;
 }
 
 server{
 
-        listen 443 ssl http2 default_server;
-        listen [::]:443 ssl http2 default_server;
-        include snippets/self-signed.conf;
-        include snippets/ssl-params.conf;
+				listen 443 ssl http2 default_server;
+				listen [::]:443 ssl http2 default_server;
+				include snippets/self-signed.conf;
+				include snippets/ssl-params.conf;
 
-    location / {
-        root  /var/www/Imaginator;
-        index home.ejs ;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header HOST $http_host;
-        proxy_set_header X-NginX-Proxy true;
-        proxy_pass https://127.0.0.1:8084;
-        proxy_redirect off;
-      }
+		location / {
+				root  /var/www/Imaginator;
+				index home.ejs ;
+				proxy_set_header X-Real-IP $remote_addr;
+				proxy_set_header HOST $http_host;
+				proxy_set_header X-NginX-Proxy true;
+				proxy_pass https://127.0.0.1:8084;
+				proxy_redirect off;
+			}
 }
