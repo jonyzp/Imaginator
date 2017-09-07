@@ -49,7 +49,7 @@ ii. Cambios	en	la	implementación	de	la	aplicación
 En disponibilidad de servicio ningún cambio
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a alguno de los dos sevidores que están en la .240 y en la .153
-
+```
        |
 -------+-----------------------------------------------
        |
@@ -66,7 +66,7 @@ Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a a
 |   Backend#1  |     |   Backend#2  |
 |  Web Server  |     |  Web Server  |
 +--------------+     +--------------+
-
+```
 
 **Rendimiento**
 
