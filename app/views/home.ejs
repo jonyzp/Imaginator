@@ -11,6 +11,10 @@
     <title>imaginator</title>
     <link rel="stylesheet" href="/css/home.css">
   <script>
+      sessionStorage.setItem("user", "");
+      sessionStorage.setItem("id","");
+      sessionStorage.setItem("email", "");
+      sessionStorage.setItem("image", "");
     function poner(images) {
       var lista = document.getElementById("images");
       while (lista.hasChildNodes()) {
@@ -44,6 +48,9 @@
           if (data=="0"){
             alert("Incorect email address or password ");
           }else {
+              sessionStorage.setItem("user", data.user);
+              sessionStorage.setItem("id",data.id);
+              sessionStorage.setItem("email", data.email);
             window.location.href = "<%=baseurl%>home";
           }
         });
@@ -139,7 +146,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%=baseurl%>home">Imaginator</a>
+      <a class="navbar-brand" href="<%=baseurl%>">Imaginator</a>
     </div>
     <div class="input-group left" id="adv-search">
       <input type="text" class="form-control" id="search_text" placeholder="Search for snippets" />

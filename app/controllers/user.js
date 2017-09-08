@@ -25,10 +25,8 @@ router.post('/login', function (req, res, next) {
     if (doc != null){
 
       if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
-        req.sessionStorage.user =doc.user;
-        req.sessionStorage.email = doc.email;
-        req.sessionStorage.id = doc._id;
-        res.end("1");
+
+        res.send({user:doc.user,email:doc.email,id:doc._id});
       }
       else {
         res.end("0");
