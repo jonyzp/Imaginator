@@ -15,8 +15,37 @@ i. Definición	de	Tecnología	de	Desarrollo
 * NodeJS
 
 ii. URLs	de	repositorio	(github)
+	https://github.com/jonyzp/Imaginator
 
+	
 b. Vista de	despliegue
+
+       	   |
+-----------+-------------------------------------------
+	       |
+	       |
+	       |  
+	 +-----+-----+
+	 | Frontend  |     
+	 |  HAProxy  |     
+	 +------+----+     
+	        |
+	        +--------------------------------+
+	        |      							 |
+	+-------+------+			     +-------+------+
+	|   Backend#1  |			     |   Backend#2  |
+	|  Web Server  |			     |  Web Server  |
+	+-------+------+			     +-------+------+
+			|								 |
+			+--------------------------------+
+			|								 |
+	+-------+------+			     +-------+------+
+	|   Data base  | Sync(files, DB) |   Data base  |
+	|--------------|<--------------->|--------------|
+	| File system  |			     | File system  |
+	+--------------+			     +--------------+
+
+
 
 i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
@@ -79,5 +108,26 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
 a. Implementación
 i. Herramientas	utilizadas
+	auth2 y cliente de autenticacion de google, openssl for centos 7
 ii. Cambios	en	la	implementación	de	la	aplicación
+	Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicacion
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
+	Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
+		|
+   		|
+-------+-----------------------------------------------  encryptacion de la comunicacion
+       |
+       |
+       |10.131.137.215  
+ +-----+-----+     
+ | Frontend  |     
+ |  HAProxy  |     
+ +------+----+     
+        |			protocolo https entre el nginx y haproxy
+        +--------------------+
+        |10.131.137.240      |10.131.137.153
++-------+------+     +-------+------+
+|   Backend#1  |     |   Backend#2  |
+|  Web Server  |     |  Web Server  |
++--------------+     +--------------+
+```
