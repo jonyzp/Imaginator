@@ -353,3 +353,49 @@ server{
 				proxy_redirect off;
 			}
 }
+
+
+Configuracion de la Bd específicamente en el servidor 10.131.137.153:
+
+Instalar mongo 3.2: https://www.howtoforge.com/tutorial/how-to-install-and-configure-mongodb-on-centos-7/
+Ingresar al shell de mongo:
+```
+use admin
+db.createUser(
+  {
+    user: "admin",
+    pwd: "password",
+    roles: [ { role: "root", db: "admin" } ]
+  }
+);
+exit;
+```
+Ingresar de nuevo con `mongo --port 27017 -u "admin" -p "password" --authenticationDatabase "admin"`
+
+Configurar la app en config/config.js con lo siguiente:
+```
+var config = {
+  development: {
+    baseUrl: "/",
+    root: rootPath,
+    app: {
+      name: 'imaginator'
+    },
+    port: process.env.PORT || 8084,
+    db: 'mongodb://localhost/imaginator',
+	//Especial atencion a estas 3 lineas: (borrar este comentario)
+    user: 'admin',
+    pass: 'password',
+    auth: {
+        authdb: 'admin'
+    }
+
+  },
+```
+Sacado de :
+http://mongoosejs.com/docs/connections.html
+https://github.com/Automattic/mongoose/issues/4717
+
+En app.js:
+cambiar la linea de mongoose connect por:
+`mongoose.connect(config.db, {user:config.user, pass:config.pass, auth:config.auth});`

@@ -17,23 +17,30 @@ module.exports = function (app) {
 
 
 router.post('/login', function (req, res, next) {
+    if(req.body.email=='' || req.body.email==null || req.body.password=='' || req.body.password==null){
+        res.end("0")
+    }else {
 
-  User.find({email:req.body.email},function (err, doc) {
-    if (err){
-      return next(err);
+        User.find({email: req.body.email}, function (err, doc) {
+            if (err) {
+                return next(err);
+            }
+            if (doc != null) {
+
+                if (bcrypt.compareSync(req.body.password, doc[0].password)) {
+
+                    res.send({user: doc.user, email: doc.email, id: doc._id});
+                }
+                else {
+                    res.end("0");
+                }
+            }
+            else {
+                res.end("0")
+            }
+        });
     }
-    if (doc != null){
 
-      if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
-
-        res.send({user:doc.user,email:doc.email,id:doc._id});
-      }
-      else {
-        res.end("0");
-      }
-    }
-    else {res.end("0")}
-  });
 });
 
 router.post('/',function(req,res){
