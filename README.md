@@ -358,6 +358,7 @@ server{
 Configuracion de la Bd específicamente en el servidor 10.131.137.153:
 
 Instalar mongo 3.2: https://www.howtoforge.com/tutorial/how-to-install-and-configure-mongodb-on-centos-7/
+ó también https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-7
 Ingresar al shell de mongo:
 ```
 use admin
@@ -399,3 +400,9 @@ https://github.com/Automattic/mongoose/issues/4717
 En app.js:
 cambiar la linea de mongoose connect por:
 `mongoose.connect(config.db, {user:config.user, pass:config.pass, auth:config.auth});`
+
+
+para mirar que un servicio si esté habilitado para iniciar junto con el sistema:
+
+`systemctl is-enabled mongod; echo $?`
+si saca 1: `sudo systemctl enable mongod`

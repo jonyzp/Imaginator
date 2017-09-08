@@ -67,6 +67,8 @@ ii. URL	de	ejecución
 
 > https://10.131.137.215
 
+Nota: Si al entrar al servidor .215 se obtiene un error 400 Bad Request, verificar que sí esté ingresando con https
+
 3. Implementación	y	Pruebas	por	Atributo	de	Calidad
 
 **Disponibilidad**
@@ -96,6 +98,8 @@ Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a a
 |  Web Server  |     |  Web Server  |
 +--------------+     +--------------+
 ```
+
+
 
 **Rendimiento**
 
