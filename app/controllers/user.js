@@ -25,9 +25,9 @@ router.post('/login', function (req, res, next) {
     if (doc != null){
 
       if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
-        req.session.user =doc.user;
-        req.session.email = doc.email;
-        req.session.user_id = doc._id;
+        req.sessionStorage.user =doc.user;
+        req.sessionStorage.email = doc.email;
+        req.sessionStorage.id = doc._id;
         res.end("1");
       }
       else {
@@ -41,21 +41,27 @@ router.post('/login', function (req, res, next) {
 router.post('/',function(req,res){
     var user = new User({});
   if (req.body.id != null){
-       user = new User({
-          email:req.body.email,
-          user:req.body.user,
-          id:req.body.id
-      });
-      user.save(function (err) {
-          if (!err) {
-              //return console.log("created");
-              res.end("1");
+      User.find({id:req.body.id},function (err, doc) {
+          if (doc == null){
+              user = new User({
+                  email:req.body.email,
+                  user:req.body.user,
+                  id:req.body.id
+              });
+              user.save(function (err) {
+                  if (!err) {
+                      //return console.log("created");
+                      res.end("1");
+                  }
+                  else{
+                      console.log("entre 1"+err);
+
+                      res.end("0");
+                  }
+              });
           }
-          else{
-              console.log(err);
-              res.end("0");
-          }
       });
+
   }
   else{
     if (req.body.email != null){
@@ -71,7 +77,7 @@ router.post('/',function(req,res){
                 res.end("1");
             }
             else{
-                console.log(err);
+                console.log("entre 2"+err);
                 res.end("0");
             }
         });

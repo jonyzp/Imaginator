@@ -58,36 +58,41 @@ $ yo express
 
 image:
 {
-			title: String,
-			format: String,
-			width: Number,
-			height: Number,
-			capture_date: Date,
-			quality: Number,
-			user_id: Schema.ObjectId,
-			visibility: String,
-			shared_with:[{
-				username:String,
-				user:String
-				}]
+	title: String,
+  	format: String,
+  	width: Number,
+  	height: Number,
+  	capture_date: Date,
+	quality: Number,
+	user_id: String,
+	visibility: String,
+	shared_with:[{
+	    username:String,
+	    user:String
+	    }],
+	img: { 
+		location: String,
+		contentType: String 
+		}
 }
 
 user:
 {
-			 email: {type: String, unique: true, required: true},
-			 user: {type: String, unique: true, required: true},
-			 password:{type: String, unique: true, required: true}
+	email: {type: String, unique: true, required: true},
+ 	user: {type: String, unique: true, required: true},
+  	id:{type: String, unique: true, required: false},
+  	password: String
 }
 
 ## 3.2 Servicios Web
 
-/* Servicio Web: Realiza la búsqueda de un artículo por su Id.
+/* Servicio Web: Realiza la búsqueda de un artículo por su Id para mostrar la interfaz de modificacion.
 	Método: GET
 	URI: /Image/?image_id=val
 */
 
 /* Servicio Web: Inserta un registro de imagen en la Base de datos, envía al res "1" si fue guardada satisfactoriamente
-	Método: POST
+	Método: POST (recibe una imagen adjunta)
 	URI: /Image/
 	Body: title, format, width, height, capdate (capture data), quality, user_id, visibility ("public" o "private").
 */
@@ -115,7 +120,7 @@ user:
 
 /* Servicio Web: Busca y envía todas las imágenes que se han compartido a un usuario
 	Método: POST
-	URI: /Image/shared_with_me?user_id=val
+	URI: /Image/shared_with_me?user=val
 */
 
 /* Servicio Web:  Realiza la búsqueda en la base de datos, por campo título y de visibilidad publica
@@ -139,7 +144,7 @@ user:
 /* Servicio Web: Agrega un usuario a la base de datos, envía al res "1" si fue guardado satisfactoriamente
 	Método: POST
 	URI: /User/
-	Body: email, password, user
+	Body: email, password, user, id
 */
 
 /* Servicio Web: Realiza el log out de cada usuario y destruye la sesión del solicitante

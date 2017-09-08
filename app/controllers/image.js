@@ -59,7 +59,6 @@ router.post('/', upload.single('image'), function (req, res, next) {
   else{
     variante=1;
   }
-  console.log("location: "+direccion+"-------- contentype: "+dataType);
   var image = new Image({
     title: req.body.title,
     format: req.body.format,
@@ -108,7 +107,15 @@ router.put('/',function (req, res, next) {
 });
 
 router.delete('/',function (req, res, next) {
-  Image.remove({_id:req.query.image_id},function (err, image) {
+  id=mongoose.Types.ObjectId(req.query.image_id);
+    Image.findById(id,function (err, image) {
+        fs.unlink(image.img.location, function(err) {
+            if (err) {
+                return console.error(err);
+            }
+        });
+    });
+  Image.remove({_id:id},function (err, image) {
     if (err){
       res.send(err);
       res.send("0")
