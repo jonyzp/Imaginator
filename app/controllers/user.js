@@ -17,25 +17,27 @@ module.exports = function (app) {
 
 
 router.post('/login', function (req, res, next) {
-
-  User.find({email:req.body.email},function (err, doc) {
-    if (err){
-      return next(err);
-    }
-    if (doc != null){
-
-      if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
-        req.sessionStorage.user =doc.user;
-        req.sessionStorage.email = doc.email;
-        req.sessionStorage.id = doc._id;
-        res.end("1");
-      }
-      else {
-        res.end("0");
-      }
-    }
-    else {res.end("0")}
-  });
+	if(req.body.email=='' || req.body.email==null || req.body.password=='' || req.body.password==null){
+		res.end("0")
+	}else{
+		User.find({email:req.body.email},function (err, doc) {
+			if (err){
+			  return next(err);
+			}
+			if (doc != null){
+		
+			  if ( bcrypt.compareSync(req.body.password,doc[0].password) ) {
+				req.sessionStorage.user =doc.user;
+				req.sessionStorage.email = doc.email;
+				req.sessionStorage.id = doc._id;
+				res.end("1");
+			  }
+			  else {
+				res.end("0");
+			  }
+			}else {res.end("0")}
+		});
+	}
 });
 
 router.post('/',function(req,res){
