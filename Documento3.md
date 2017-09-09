@@ -19,7 +19,10 @@ ii. URLs	de	repositorio	(github)
 
 	
 b. Vista de	despliegue
+i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
+**Servidores:**
+```
        	   |
 -----------+-------------------------------------------
 	       |
@@ -44,10 +47,9 @@ b. Vista de	despliegue
 	|--------------|<--------------->|--------------|
 	| File system  |			     | File system  |
 	+--------------+			     +--------------+
+```
 
-
-
-i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
+Componente Hardware:
 
 * DCA - CentOS 7.1
 * VMware
@@ -75,7 +77,7 @@ Nota: Si al entrar al servidor .215 se obtiene un error 400 Bad Request, verific
 
 a. Implementación
 i. Herramientas	utilizadas
-Haproxy, pm2, nginx
+Haproxy, pm2, nginx, gluster, cron
 ii. Cambios	en	la	implementación	de	la	aplicación
 En disponibilidad de servicio ningún cambio
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
@@ -117,7 +119,8 @@ ii. Cambios	en	la	implementación	de	la	aplicación
 	Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicacion
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 	Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
-		|
+```
+|
    		|
 -------+-----------------------------------------------  encryptacion de la comunicacion
        |
