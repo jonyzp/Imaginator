@@ -3,53 +3,53 @@ Documentación	general	de	la	aplicación	y	su	proceso:
 1. Miembros	del	equipo
 
     * Mayerli López Galeano
-	* Mauricio Hoyos Ardila   
-	* Pablo Quijano Jaramillo 
+    * Mauricio Hoyos Ardila   
+    * Pablo Quijano Jaramillo 
     * Jonathan Zapata Castaño 
-	
+    
 
 2. Diseño	de	arquitectura de	la	Aplicación y	Sistema
 
-a. Vista	de	desarrollo
-i. Definición	de	Tecnología	de	Desarrollo
-* NodeJS
+    a. Vista	de	desarrollo
+        i. Definición	de	Tecnología	de	Desarrollo
+       * NodeJS
+    
+        ii. URLs	de	repositorio	(github)
+       > https://github.com/jonyzp/Imaginator
 
-ii. URLs	de	repositorio	(github)
-	https://github.com/jonyzp/Imaginator
+    
+    b. Vista de	despliegue:
+        i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
-	
-b. Vista de	despliegue
-i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
-
-**Servidores:**
+       **Servidores:**
 ```
-       	   |
+           |
 -----------+-------------------------------------------
-	       |
-	       |
-	       |  
-	 +-----+-----+
-	 | Frontend  |     
-	 |  HAProxy  |     
-	 +------+----+     
-	        |
-	        +--------------------------------+
-	        |      							 |
-	+-------+------+			     +-------+------+
-	|   Backend#1  |			     |   Backend#2  |
-	|  Web Server  |			     |  Web Server  |
-	+-------+------+			     +-------+------+
-			|								 |
-			+--------------------------------+
-			|								 |
-	+-------+------+			     +-------+------+
-	|   Data base  | Sync(files, DB) |   Data base  |
-	|--------------|<--------------->|--------------|
-	| File system  |			     | File system  |
-	+--------------+			     +--------------+
+           |
+           |
+           |  
+     +-----+-----+
+     | Frontend  |     
+     |  HAProxy  |     
+     +------+----+     
+            |
+            +--------------------------------+
+            |      						                    |
+    +-------+------+			              +-------+------+
+    |   Backend#1  |			              |   Backend#2  |
+    |  Web Server  |			              |  Web Server  |
+    +-------+------+			              +-------+------+
+            |								                        |
+            +--------------------------------+
+            |								                        |
+    +-------+------+			              +-------+------+
+    |   Data base  | Sync(files, DB) |   Data base  |
+    |--------------|<--------------->|--------------|
+    | File system  |			              | File system  |
+    +--------------+			              +--------------+
 ```
 
-Componente Hardware:
+**Componente Hardware:**
 
 * DCA - CentOS 7.1
 * VMware
@@ -76,12 +76,17 @@ Nota: Si al entrar al servidor .215 se obtiene un error 400 Bad Request, verific
 **Disponibilidad**
 
 a. Implementación
+
 i. Herramientas	utilizadas
+
 Haproxy, pm2, nginx, gluster, cron
+
 ii. Cambios	en	la	implementación	de	la	aplicación
+
 En disponibilidad de servicio ningún cambio
+
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
-Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a alguno de los dos sevidores que están en la .240 y en la .153
+    Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a alguno de los dos sevidores que están en la .240 y en la .153
 ```
        |
 -------+-----------------------------------------------
@@ -114,15 +119,15 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
 a. Implementación
 i. Herramientas	utilizadas
-	auth2 y cliente de autenticacion de google, openssl for centos 7
+    auth2 y cliente de autenticacion de google, openssl for centos 7
 ii. Cambios	en	la	implementación	de	la	aplicación
-	Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicacion
+    Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicacion
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
-	Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
+    Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
 ```
 |
-   		|
--------+-----------------------------------------------  encryptacion de la comunicacion
+           |
+-------+-----------------------------------------------  encriptacion de la comunicacion
        |
        |
        |10.131.137.215  
