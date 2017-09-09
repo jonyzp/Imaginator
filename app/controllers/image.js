@@ -10,6 +10,7 @@ var express = require('express'),
   imagename="",
   variante=1;
   Image = mongoose.model('Image');
+var mcache = require('memory-cache');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -38,11 +39,19 @@ module.exports = function (app) {
 };
 router.get('/see', function (req, res, next) {
   id = mongoose.Types.ObjectId(req.query.image_id);
-  Image.findById(id, function (err, doc) {
-    if (err) return next(err);
-      res.contentType(doc.img.contentType);
-      res.send(fs.readFileSync(doc.img.location));
-  });
+  let cacheBody = mcache.get(id)
+  if (cacheBody) {
+    res.contentType(cacheBody.contentType);
+    res.send(fs.readFileSync(cacheBody.location));
+  }else{
+    Image.findById(id, function (err, doc) {
+      if (err) return next(err);
+        res.contentType(doc.img.contentType);
+        value = doc.img;
+        mcache.put(id, value, 10*1000);
+        res.send(fs.readFileSync(doc.img.location));
+    });
+  }
 });
 router.get('/',function (req, res, next) {
   id = mongoose.Types.ObjectId(req.query.image_id);
