@@ -14,14 +14,14 @@ Documentación	general	de	la	aplicación	y	su	proceso:
         i. Definición	de	Tecnología	de	Desarrollo
        * NodeJS
     
-        ii. URLs	de	repositorio	(github)
-       > https://github.com/jonyzp/Imaginator
+    ii. URLs	de	repositorio	(github)
+   > https://github.com/jonyzp/Imaginator
 
     
     b. Vista de	despliegue:
         i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
-       **Servidores:**
+    **Servidores:**
 ```
            |
 -----------+-------------------------------------------
@@ -34,19 +34,19 @@ Documentación	general	de	la	aplicación	y	su	proceso:
      +------+----+     
             |
             +--------------------------------+
-            |      						                    |
-    +-------+------+			              +-------+------+
-    |   Backend#1  |			              |   Backend#2  |
-    |  Web Server  |			              |  Web Server  |
-    +-------+------+			              +-------+------+
-            |								                        |
+            |                                |
+    +-------+------+                 +-------+------+
+    |   Backend#1  |                 |   Backend#2  |
+    |  Web Server  |                 |  Web Server  |
+    +-------+------+                 +-------+------+
+            |                                |
             +--------------------------------+
-            |								                        |
-    +-------+------+			              +-------+------+
+            |                                |
+    +-------+------+                 +-------+------+
     |   Data base  | Sync(files, DB) |   Data base  |
     |--------------|<--------------->|--------------|
-    | File system  |			              | File system  |
-    +--------------+			              +--------------+
+    | File system  |                 | File system  |
+    +--------------+                 +--------------+
 ```
 
 **Componente Hardware:**
@@ -125,8 +125,8 @@ ii. Cambios	en	la	implementación	de	la	aplicación
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
     Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
 ```
-|
-           |
+       |
+       |
 -------+-----------------------------------------------  encriptacion de la comunicacion
        |
        |
