@@ -111,8 +111,12 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 **Rendimiento**
 
 a. Implementación
+
 i. Herramientas	utilizadas
+   La herramienta utilizada en este QA fue JMETER
+   
 ii. Cambios	en	la	implementación	de	la	aplicación
+
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
 **Seguridad**
