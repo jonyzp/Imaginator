@@ -118,6 +118,7 @@ i. Herramientas	utilizadas
 ii. Cambios	en	la	implementación	de	la	aplicación
 
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
+   Después de acceder a alguna de las máquinas nos dirige automaticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado de público, si refrescamos la página esta 
 
 **Seguridad**
 
