@@ -113,12 +113,13 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 a. Implementación
 
 i. Herramientas	utilizadas
-   La herramienta utilizada en este QA fue JMETER
-   
+La herramienta utilizada en este QA fue JMETER
+
 ii. Cambios	en	la	implementación	de	la	aplicación
 
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
-   Después de acceder a alguna de las máquinas nos dirige automaticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado de público, si refrescamos la página esta 
+Después de acceder a alguna de las máquinas nos dirige automáticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado público, si refrescamos la página esta automáticamente cargará con todas las publicaciones. 
+Si deseamos ingresar a la app despues de registrarnos, podemos ver las imágenes que han sido compartidas por los demás usuarios con solo darle un clic al botón "xxx" se nos abrirá una ventana emergente con la imagen de la publicación que deseamos ver, dicha imagen se guardará en caché por un lapso de tiempo el cual podemos aprovechar para agilizar dicho procesos y optimizar el tiempo, además de lo anterior también podemos buscar la publicación que deseemos por el nombre de la misma.
 
 **Seguridad**
 
