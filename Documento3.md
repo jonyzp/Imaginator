@@ -10,7 +10,7 @@ Documentación	general	de	la	aplicación	y	su	proceso:
 
 2. Diseño	de	arquitectura de	la	Aplicación y	Sistema
 
-    a. Vista	de	desarrollo
+    *a. Vista	de	desarrollo*
         i. Definición	de	Tecnología	de	Desarrollo
        * NodeJS
 
@@ -18,7 +18,7 @@ Documentación	general	de	la	aplicación	y	su	proceso:
    > https://github.com/jonyzp/Imaginator
 
 
-    b. Vista de	despliegue:
+    *b. Vista de	despliegue:*
         i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
     **Servidores:**
@@ -65,7 +65,7 @@ Documentación	general	de	la	aplicación	y	su	proceso:
 * 20 GB de disco duro
 * 2 CPUs virtuales
 
-ii. URL	de	ejecución
+*ii. URL	de	ejecución*
 
 > https://10.131.137.215
 
@@ -75,17 +75,17 @@ Nota: Si al entrar al servidor .215 se obtiene un error 400 Bad Request, verific
 
 **Disponibilidad**
 
-a. Implementación
+*a. Implementación*
 
-i. Herramientas	utilizadas
+*i. Herramientas	utilizadas.*
 
 Haproxy, pm2, nginx, gluster, cron
 
-ii. Cambios	en	la	implementación	de	la	aplicación
+*ii. Cambios	en	la	implementación	de	la	aplicación.*
 
 En disponibilidad de servicio ningún cambio
 
-b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
+*b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.*
     Ingresar al LB por la ip dada (https://10.131.137.215) y este debe redirigir a alguno de los dos sevidores que están en la .240 y en la .153
 ```
        |
@@ -110,18 +110,18 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
 **Rendimiento**
 
-a. Implementación
+*a. Implementación*
 
-i. Herramientas	utilizadas
+*i. Herramientas	utilizadas.*
 
     La herramienta utilizada en este QA fue JMETER
 
-ii. Cambios	en	la	implementación	de	la	aplicación
+*ii. Cambios	en	la	implementación	de	la	aplicación.*
 
   En rendimiento fue necesario el cambio para la implementación del caché, el cual se hizo en un método que me permite visualizar la imagen que desee.
   Adicional a esto se implemento la compression de assets.
 
-b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
+*b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.*
 
   Después de acceder a alguna de las máquinas nos dirige automáticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado público, si refrescamos la página esta automáticamente cargará con todas las publicaciones.
 
@@ -151,17 +151,17 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
 **Seguridad**
 
-a. Implementación
+*a. Implementación*
 
-i. Herramientas	utilizadas
+*i. Herramientas	utilizadas*
 
   Auth2 y cliente de autenticacion de google, openssl for centos 7.
 
-ii. Cambios	en	la	implementación	de	la	aplicación.
+*ii. Cambios	en	la	implementación	de	la	aplicación.*
 
   Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicación.
 
-b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
+*b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.*
 
   Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, además a esto se aseguraro la comunicación entre el balaceador de cargas haproxy y el usuario por medio del protocolo https. Adicionalmente a esto se establecio comunicación https entre el nginx de los servidores con el LB.
 
