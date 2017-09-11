@@ -2,22 +2,22 @@ Documentación	general	de	la	aplicación	y	su	proceso:
 
 1. Miembros	del	equipo
 
-    * Mayerli López Galeano
-    * Mauricio Hoyos Ardila   
-    * Pablo Quijano Jaramillo 
-    * Jonathan Zapata Castaño 
-    
+    * _Mayerli López Galeano_
+    * _Mauricio Hoyos Ardila_
+    * _Pablo Quijano Jaramillo_
+    * _Jonathan Zapata Castaño_
+
 
 2. Diseño	de	arquitectura de	la	Aplicación y	Sistema
 
     a. Vista	de	desarrollo
         i. Definición	de	Tecnología	de	Desarrollo
        * NodeJS
-    
+
     ii. URLs	de	repositorio	(github)
    > https://github.com/jonyzp/Imaginator
 
-    
+
     b. Vista de	despliegue:
         i. Definición de Tecnología – Infraestructura TI:	Servidores,	Software Base,	Redes,	etc.
 
@@ -65,7 +65,7 @@ Documentación	general	de	la	aplicación	y	su	proceso:
 * 20 GB de disco duro
 * 2 CPUs virtuales
 
-ii. URL	de	ejecución	
+ii. URL	de	ejecución
 
 > https://10.131.137.215
 
@@ -113,27 +113,62 @@ b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 a. Implementación
 
 i. Herramientas	utilizadas
-La herramienta utilizada en este QA fue JMETER
+
+    La herramienta utilizada en este QA fue JMETER
 
 ii. Cambios	en	la	implementación	de	la	aplicación
 
+    En rendimiento fue necesario el cambio para la implementación del caché, el cual se hizo en un método que me permite visualizar la imagen que desee.
+    Adicional a esto se implemento la compression de assets.
+
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
-Después de acceder a alguna de las máquinas nos dirige automáticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado público, si refrescamos la página esta automáticamente cargará con todas las publicaciones. 
-Si deseamos ingresar a la app despues de registrarnos, podemos ver las imágenes que han sido compartidas por los demás usuarios con solo darle un clic al botón "xxx" se nos abrirá una ventana emergente con la imagen de la publicación que deseamos ver, dicha imagen se guardará en caché por un lapso de tiempo el cual podemos aprovechar para agilizar dicho procesos y optimizar el tiempo, además de lo anterior también podemos buscar la publicación que deseemos por el nombre de la misma.
+
+  Después de acceder a alguna de las máquinas nos dirige automáticamente a la página principal, en la cual se puede apreciar todas las publicaciones que en ese momento se encuentran en estado público, si refrescamos la página esta automáticamente cargará con todas las publicaciones.
+
+  Si deseamos ingresar a la app despues de registrarnos, podemos ver las imágenes que han sido compartidas por los demás usuarios con solo darle un clic al botón "xxx" se nos abrirá una ventana emergente con la imagen de la publicación que deseamos ver, dicha imagen se guardará en caché por un lapso de tiempo el cual podemos aprovechar para agilizar dicho procesos y optimizar el tiempo, además de lo anterior también podemos buscar la publicación que deseemos por el nombre de la misma.
+
+  ```
+         |
+  -------+-----------------------------------------------
+         |
+         |
+         |10.131.137.215  
+   +-----+-----+     
+   | Frontend  |     
+   |  HAProxy  |     
+   +------+----+     
+          |
+          +--------------------+
+          |10.131.137.240      |10.131.137.153
+  +-------+------+     +-------+------+
+  |   Backend#1  |     |   Backend#2  |
+  |  Web Server  |     |  Web Server  |
+  |--------------|     |--------------|
+  | Caché        |     |  Caché       |
+  +--------------+     +--------------+
+  ```
+
 
 **Seguridad**
 
 a. Implementación
+
 i. Herramientas	utilizadas
-    auth2 y cliente de autenticacion de google, openssl for centos 7
-ii. Cambios	en	la	implementación	de	la	aplicación
-    Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicacion
+
+    Auth2 y cliente de autenticacion de google, openssl for centos 7.
+
+ii. Cambios	en	la	implementación	de	la	aplicación.
+
+    Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicación.
+
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
-    Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, ademas a esto se aseguraro la comunicacion entre el balaceador de cargas haproxy y el usuario por medio del protocolo https.Adicionalmente a esto se establecio comunicacion https entre el nginx de los servidores con el LB.
+
+    Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, además a esto se aseguraro la comunicación entre el balaceador de cargas haproxy y el usuario por medio del protocolo https. Adicionalmente a esto se establecio comunicación https entre el nginx de los servidores con el LB.
+
 ```
        |
        |
--------+-----------------------------------------------  encriptacion de la comunicacion
+-------+-----------------------------------------------  encriptación de la comunicación
        |
        |
        |10.131.137.215  
