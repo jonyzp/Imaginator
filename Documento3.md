@@ -118,8 +118,8 @@ i. Herramientas	utilizadas
 
 ii. Cambios	en	la	implementación	de	la	aplicación
 
-    En rendimiento fue necesario el cambio para la implementación del caché, el cual se hizo en un método que me permite visualizar la imagen que desee.
-    Adicional a esto se implemento la compression de assets.
+  En rendimiento fue necesario el cambio para la implementación del caché, el cual se hizo en un método que me permite visualizar la imagen que desee.
+  Adicional a esto se implemento la compression de assets.
 
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
@@ -155,15 +155,15 @@ a. Implementación
 
 i. Herramientas	utilizadas
 
-    Auth2 y cliente de autenticacion de google, openssl for centos 7.
+  Auth2 y cliente de autenticacion de google, openssl for centos 7.
 
 ii. Cambios	en	la	implementación	de	la	aplicación.
 
-    Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicación.
+  Dentro del atributo de calidad de seguridad no cambio ningun item de imlementacion en la aplicación.
 
 b. Esquemas	de	pruebas	para	comprobar	el	Atributo	de	Calidad.
 
-    Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, además a esto se aseguraro la comunicación entre el balaceador de cargas haproxy y el usuario por medio del protocolo https. Adicionalmente a esto se establecio comunicación https entre el nginx de los servidores con el LB.
+  Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, además a esto se aseguraro la comunicación entre el balaceador de cargas haproxy y el usuario por medio del protocolo https. Adicionalmente a esto se establecio comunicación https entre el nginx de los servidores con el LB.
 
 ```
        |
