@@ -28,7 +28,6 @@ Según la arquitectura planteada, el .215 es el servidor por donde entran las pe
 
 * Se instala HAProxy en el servidor que se utilizará como balanceador (10.131.137.215) 
 * El archivo de configuración que se utilizó es el que se encuentra en esta carpeta con el siguiente nombre:
-> haproxy.cfg
 > ![haproxy.cfg](https://github.com/jonyzp/Imaginator/blob/master/Implementacion/QA_Disponibilidad/etc-haproxy-haproxy-http.cfg)
 * Este archivo se crea en la siguiente ruta:
 > /etc/haproxy/haproxy.cfg
@@ -61,6 +60,10 @@ sudo pm2 save
 ### Recuperación
 
 * Pm2 recupera el appserver automáticamente
+
+### Notificación
+* El pm2 notifica los errores en un archivo .log, generalmente se encuentra en ~/.pm2/logs/*.err o en el caso de la .153 está en ~/.pm2/logs/app-error-0.log
+* Para más practicidad: `sudo pm2 logs` notifica en tiempo real las transacciones de la aplicación
 
 ## Estrategias Utilizadas:
 * Análisis, diseño, tácticas, herramientas:
