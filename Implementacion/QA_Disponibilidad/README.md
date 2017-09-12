@@ -24,15 +24,17 @@ Según la arquitectura planteada, el .215 es el servidor por donde entran las pe
     +-------+------+                 +-------+------+
 ```
 
-## Cómo configurar Haproxy de http (Load Balancer):
+## Cómo configurar Haproxy en http y https (Load Balancer):
 
 * Se instala HAProxy en el servidor que se utilizará como balanceador (10.131.137.215) 
 * El archivo de configuración que se utilizó es el que se encuentra en esta carpeta con el siguiente nombre:
 > haproxy.cfg
+> ![haproxy.cfg](https://github.com/jonyzp/Imaginator/blob/master/Implementacion/QA_Disponibilidad/etc-haproxy-haproxy-http.cfg)
 * Este archivo se crea en la siguiente ruta:
 > /etc/haproxy/haproxy.cfg
 
-* Se instaló el haproxy según la página de digital Ocean: https://www.upcloud.com/support/haproxy-load-balancer-centos/#installing-haproxy
+* Se instaló el haproxy según la página de digital Ocean: 
+> https://www.upcloud.com/support/haproxy-load-balancer-centos/#installing-haproxy
 
 ## [Detección | Tolerancia | Recuperación | Notificación] de fallos del appserver (Pm2)
 
