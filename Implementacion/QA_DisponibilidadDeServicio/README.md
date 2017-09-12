@@ -68,6 +68,6 @@ sudo pm2 save
 ## Estrategias Utilizadas:
 * Análisis, diseño, tácticas, herramientas:
 * Se analizó y diseñó la arquitectura con todo el equipo:
-![HA Tactics](https://image.prntscr.com/image/i_7RPcLMSXurRw6TMK74cw.jpeg)
+![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
 
 Herramientas: Pm2 y Haproxy
