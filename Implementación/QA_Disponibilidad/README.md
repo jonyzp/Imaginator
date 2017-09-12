@@ -2,8 +2,9 @@
 
 ## Disponibilidad del Appserver:
 
-Según la arquitectura planteada, el .215 es el servidor clave, si este se cae, se cae **todo**. 
+Según la arquitectura planteada, el .215 es el servidor por donde entran las peticiones, si este se cae, se cae **todo**. 
 
+#### Arquitectura base:
 ```
            |
 -----------+-------------------------------------------
@@ -26,8 +27,8 @@ Según la arquitectura planteada, el .215 es el servidor clave, si este se cae, 
 ## Cómo configurar Haproxy de http (Load Balancer):
 
 * Se instala HAProxy en el servidor que se utilizará como balanceador (10.131.137.215) 
-* El archivo de configuración que se utilizó es el que se encuentra en esta carpeta:
-> etc-haproxy-haproxy-http.cfg
+* El archivo de configuración que se utilizó es el que se encuentra en esta carpeta con el siguiente nombre:
+> haproxy.cfg
 * Este archivo se crea en la siguiente ruta:
 > /etc/haproxy/haproxy.cfg
 
