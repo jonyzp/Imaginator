@@ -21,7 +21,7 @@ var config = {
       name: 'imaginator'
     },
     port: process.env.PORT || 8084,
-    db: 'mongodb://server0,server1,server2,server4/?replicaSet=myreplica01'
+    db: 'mongodb://server0,server1,server4/?replicaSet=myreplica01'
   },
 
   production: {
