@@ -1,6 +1,6 @@
 # Configuración QA de Rendimiento
 
-#Evaluación de la App antes de implementar el QA de Rendimiento
+# Evaluación de la App antes de implementar el QA de Rendimiento
 
 El QA de rendimiento es el encargado de optimizar los tiempos de respuesta de los requisitos, teniendo en cuenta los diferentes métodos y técnicas, debido a esto, fue necesario una previa evaluación de lo que nos ofrecía la App.
 
@@ -8,7 +8,7 @@ Esta evaluación fue hecha gracias a la ayuda de la herramienta JMeter, la cual 
 
 En el siguiente gráfico podemos apreciar los resultados obtenidos antes de hacer las modificaciones a la App para mejorar su rendimiento.
 
-#Implementaciones
+# Implementaciones
 
 * _Comprimir assets_
 
