@@ -72,4 +72,5 @@ sudo pm2 save
 
 Herramientas: Pm2 y Haproxy Nginx
 
-El archivo de configuracion para el nginx esta en esta carpeta
+El archivo de configuracion para el nginx esta en esta carpeta, prestar atención sobretodo a la parte de location / {  ...  }
+
