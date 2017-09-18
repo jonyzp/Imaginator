@@ -28,7 +28,7 @@ Según la arquitectura planteada, el .215 es el servidor por donde entran las pe
 
 * Se instala HAProxy en el servidor que se utilizará como balanceador (10.131.137.215) 
 * El archivo de configuración que se utilizó es el que se encuentra en esta carpeta con el siguiente nombre:
-> ![haproxy.cfg](https://github.com/jonyzp/Imaginator/blob/master/Implementacion/QA_Disponibilidad/etc-haproxy-haproxy-http.cfg)
+> haproxy.cf
 * Este archivo se crea en la siguiente ruta:
 > /etc/haproxy/haproxy.cfg
 
@@ -70,4 +70,6 @@ sudo pm2 save
 * Se analizó y diseñó la arquitectura con todo el equipo:
 ![Architecture](https://image.prntscr.com/image/CPOsQUD1R2u7wmK9QhoI-A.jpeg)
 
-Herramientas: Pm2 y Haproxy
+Herramientas: Pm2 y Haproxy Nginx
+
+El archivo de configuracion para el nginx esta en esta carpeta

@@ -15,13 +15,13 @@ var mcache = require('memory-cache');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       if (variante==1){
-          cb(null, 'public/uploads/');
-          direccion = 'public/uploads/';
+          cb(null, 'public/uploads');
+          direccion = 'public/uploads';
           dataType = file.mimetype;
       }
       else {
-          cb(null, 'public/uploadss/');
-          direccion = 'public/uploads2/';
+          cb(null, 'public/uploads2');
+          direccion = 'public/uploads2';
           dataType = file.mimetype;
       }
     },

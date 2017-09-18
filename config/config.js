@@ -9,7 +9,8 @@ var config = {
     app: {
       name: 'imaginator'
     },
-    port: process.env.PORT || 8088,
+    port: process.env.PORT || 8084,
+    //db: 'mongodb://localhost/imaginator'
     db: 'mongodb://localhost/imaginator'
   },
 
@@ -19,7 +20,7 @@ var config = {
     app: {
       name: 'imaginator'
     },
-    port: process.env.PORT || 8088,
+    port: process.env.PORT || 8084,
     db: 'mongodb://localhost/imaginator'
   },
 
@@ -29,7 +30,7 @@ var config = {
     app: {
       name: 'imaginator'
     },
-    port: process.env.PORT || 8088,
+    port: process.env.PORT || 8084,
     db: 'mongodb://mhoyosa2:rydSEG89@ds028310.mlab.com:28310/imaginator'
   }
 };
