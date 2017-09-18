@@ -20,16 +20,14 @@ router.post('/login', function (req, res, next) {
     if(req.body.email=='' || req.body.email==null || req.body.password=='' || req.body.password==null){
         res.end("0")
     }else {
-
         User.find({email: req.body.email}, function (err, doc) {
             if (err) {
                 return next(err);
             }
-            if (doc != null) {
+            if ( doc[0].password != undefined) {
 
                 if (bcrypt.compareSync(req.body.password, doc[0].password)) {
-
-                    res.send({user: doc.user, email: doc.email, id: doc._id});
+                    res.send({user: doc[0].user, email: doc[0].email, id: doc[0]._id});
                 }
                 else {
                     res.end("0");
@@ -47,7 +45,7 @@ router.post('/',function(req,res){
     var user = new User({});
   if (req.body.id != null){
       User.find({id:req.body.id},function (err, doc) {
-          if (doc == null){
+          if (doc.length == 0){
               user = new User({
                   email:req.body.email,
                   user:req.body.user,
@@ -59,7 +57,6 @@ router.post('/',function(req,res){
                       res.end("1");
                   }
                   else{
-                      console.log("entre 1"+err);
 
                       res.end("0");
                   }
@@ -82,7 +79,6 @@ router.post('/',function(req,res){
                 res.end("1");
             }
             else{
-                console.log("entre 2"+err);
                 res.end("0");
             }
         });

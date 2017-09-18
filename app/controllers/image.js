@@ -15,13 +15,13 @@ var mcache = require('memory-cache');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       if (variante==1){
-          cb(null, 'server1/mnt/glustervolume');
-          direccion = 'server1/mnt/glustervolume/';
+          cb(null, 'public/uploads/');
+          direccion = 'public/uploads/';
           dataType = file.mimetype;
       }
       else {
-          cb(null, 'server2/mnt/glustervolume');
-          direccion = 'server2/mnt/glustervolume';
+          cb(null, 'public/uploadss/');
+          direccion = 'public/uploads2/';
           dataType = file.mimetype;
       }
     },
@@ -75,7 +75,7 @@ router.post('/', upload.single('image'), function (req, res, next) {
     height: req.body.height,
     capture_date: req.body.capdate,
     quality: req.body.quality,
-    img: {location:direccion + imagename, contentType:dataType},
+    img: {location:direccion +"/"+ imagename, contentType:dataType},
     user_id : req.body.user_id,
     visibility: req.body.visibility
 
@@ -122,15 +122,16 @@ router.delete('/',function (req, res, next) {
             if (err) {
                 return console.error(err);
             }
+            Image.remove({_id:id},function (err, image) {
+                if (err){
+                    res.send(err);
+                    res.send("0")
+                }
+                res.end("1");
+            });
         });
     });
-  Image.remove({_id:id},function (err, image) {
-    if (err){
-      res.send(err);
-      res.send("0")
-    }
-    res.end("1");
-  });
+
 });
 
 router.post('/user_images',function (req, res, next) {

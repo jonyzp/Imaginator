@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/css/home.css">
 
   <script>
-
     function poner(images) {
       var lista = document.getElementById("images");
       while (lista.hasChildNodes()) {
@@ -74,15 +73,22 @@
   <script>
 
     $(document).ready(function(){
-      $.post("Image/public_images",function (images) {
-          poner(images);
-     });
-      $.post("User/",{email:sessionStorage.email, user: sessionStorage.user,id:sessionStorage.id}, function(data) {
+
+        console.log("email: "+sessionStorage.email+"user: "+sessionStorage.user+"id: "+sessionStorage.id);
+        var email,user,id;
+        email = sessionStorage.email;
+        user = sessionStorage.user;
+        id = sessionStorage.id;
+      $.post("User/",{email:email, user: user,id:id}, function(data) {
+
           if(data){
               //alert("welcome");
           }
       });
 
+        $.post("Image/public_images",function (images) {
+            poner(images);
+        });
       $("#logout").click(function(){
         $.post("User/logout").then(window.location.href = "<%=baseurl%>");
       });

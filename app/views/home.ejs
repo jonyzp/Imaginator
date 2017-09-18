@@ -33,6 +33,11 @@
         document.getElementById("images").appendChild(div);
       }
     }
+    function guardar(user, email, id) {
+        sessionStorage.setItem("user", user);
+        sessionStorage.setItem("id",id);
+        sessionStorage.setItem("email", email);
+    }
   </script>
   <script>
       $(document).ready(function(){
@@ -48,6 +53,8 @@
           if (data=="0"){
             alert("Incorect email address or password ");
           }else {
+              console.log(data)
+              guardar(data.user,data.email,data.id)
               sessionStorage.setItem("user", data.user);
               sessionStorage.setItem("id",data.id);
               sessionStorage.setItem("email", data.email);
@@ -74,7 +81,7 @@
           gapi.load('auth2', function(){
               // Retrieve the singleton for the GoogleAuth library and set up the client.
               auth2 = gapi.auth2.init({
-                  client_id: '43890780869-7tc59qqvth3rm02r02t4a7q79l0ld5q5.apps.googleusercontent.com',
+                  client_id: '43890780869-760rh8qnm674imgopmaim8crcqr8hvmc.apps.googleusercontent.com',
                   cookiepolicy: 'single_host_origin',
                   // Request scopes in addition to 'profile' and 'email'
                   //scope: 'additional_scope'
