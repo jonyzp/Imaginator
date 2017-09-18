@@ -57,7 +57,7 @@ router.post('/',function(req,res){
                       res.end("1");
                   }
                   else{
-
+                      console.log(err);
                       res.end("0");
                   }
               });
@@ -79,6 +79,7 @@ router.post('/',function(req,res){
                 res.end("1");
             }
             else{
+              console.log(err);
                 res.end("0");
             }
         });
