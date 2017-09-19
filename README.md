@@ -407,11 +407,3 @@ para mirar que un servicio si esté habilitado para iniciar junto con el sistema
 `systemctl is-enabled mongod; echo $?`
 si saca 1: `sudo systemctl enable mongod`
 
-
-# 7. Seguridad
-
-para la implementacion del SSO se siguio el tutoria recomendado por google que se encuentra disponible en la siguiente direccion https://developers.google.com/identity/sign-in/web/build-button  y  https://developers.google.com/identity/sign-in/web/sign-in
-
-para toda la configuracion del SSL de las direcciones privadas se siguieron los siguientes tutoriales disponibles en internet 
-- configuracion del NGINX: https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04#conclusion
-- configuracion del haproxy: https://serversforhackers.com/c/using-ssl-certificates-with-haproxy

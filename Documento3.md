@@ -166,17 +166,22 @@ En disponibilidad de servicio ningún cambio
   Todos los usuarios que quieran acceder a la aplicacion pueden hacerlo por medio de una cuenta creada internamente en la aplicacion o por medio de la cuenta que se poseea de google, además a esto se aseguraro la comunicación entre el balaceador de cargas haproxy y el usuario por medio del protocolo https. Adicionalmente a esto se establecio comunicación https entre el nginx de los servidores con el LB.
 
 ```
+       | 
        |
+-------+ <----- protocolo https---------------------------  encriptación de la comunicación
        |
--------+-----------------------------------------------  encriptación de la comunicación
-       |
+       | proyecto23.dis.eafit.edu.co --> ip:200.12.180.86
+ +-----+-----+     
+ | Frontend  |     
+ |  HAProxy  |     
+ +------+----+  
        |
        |10.131.137.215  
  +-----+-----+     
  | Frontend  |     
  |  HAProxy  |     
  +------+----+     
-        |			protocolo https entre el nginx y haproxy
+        |			protocolo http entre el nginx y haproxy
         +--------------------+
         |10.131.137.240      |10.131.137.153
 +-------+------+     +-------+------+

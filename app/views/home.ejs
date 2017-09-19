@@ -53,11 +53,7 @@
           if (data=="0"){
             alert("Incorect email address or password ");
           }else {
-              console.log(data)
               guardar(data.user,data.email,data.id)
-              sessionStorage.setItem("user", data.user);
-              sessionStorage.setItem("id",data.id);
-              sessionStorage.setItem("email", data.email);
             window.location.href = "<%=baseurl%>home";
           }
         });
