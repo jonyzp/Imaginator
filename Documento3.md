@@ -99,7 +99,7 @@ En disponibilidad de servicio ningún cambio
  +------+----+     
         |
         +--------------------+
-        |10.131.137.240      |10.131.137.153
+        |10.131.137.240      |10.131.137.151
 +-------+------+     +-------+------+
 |   Backend#1  |     |   Backend#2  |
 |  Web Server  |     |  Web Server  |
@@ -139,7 +139,7 @@ En disponibilidad de servicio ningún cambio
    +------+----+     
           |
           +--------------------+
-          |10.131.137.240      |10.131.137.153
+          |10.131.137.240      |10.131.137.151
   +-------+------+     +-------+------+
   |   Backend#1  |     |   Backend#2  |
   |  Web Server  |     |  Web Server  |
@@ -183,7 +183,7 @@ En disponibilidad de servicio ningún cambio
  +------+----+     
         |			protocolo http entre el nginx y haproxy
         +--------------------+
-        |10.131.137.240      |10.131.137.153
+        |10.131.137.240      |10.131.137.151
 +-------+------+     +-------+------+
 |   Backend#1  |     |   Backend#2  |
 |  Web Server  |     |  Web Server  |
