@@ -6,7 +6,7 @@ El QA de rendimiento es el encargado de optimizar los tiempos de respuesta de lo
 
 Esta evaluación fue hecha gracias a la ayuda de la herramienta JMeter, la cual nos permitió evaluar el tiempo de respuesta de la App debido a cierta concurrencia de usuarios.
 
-En el siguiente gráfico podemos apreciar los resultados obtenidos antes de hacer las modificaciones a la App para mejorar su rendimiento.
+En el archivo de excel podemos apreciar los resultados obtenidos antes de hacer las modificaciones a la App para mejorar su rendimiento, al igual que los resultados después de las implemenaciones.
 
 # Implementaciones
 
