@@ -2,7 +2,7 @@
 
 ## Disponibilidad del Appserver:
 
-Según la arquitectura planteada, el .215 es el servidor por donde entran las peticiones, si este se cae, se cae **todo**. 
+Según la arquitectura planteada, el .215 es el servidor por donde entran las peticiones.
 
 #### Arquitectura base:
 ```
@@ -17,7 +17,7 @@ Según la arquitectura planteada, el .215 es el servidor por donde entran las pe
      +------+----+     
             |
             +--------------------------------+
-            |  .240                          |  .153
+            |  .240                          |  .151
     +-------+------+                 +-------+------+
     |   Backend#1  |                 |   Backend#2  |
     |  Web Server  |                 |  Web Server  |
